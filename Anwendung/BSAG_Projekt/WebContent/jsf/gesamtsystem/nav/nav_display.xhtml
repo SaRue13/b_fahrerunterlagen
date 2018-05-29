@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="nav_template.xhtml">
+
+		<ui:define name="nav_button_first">
+			<b:navbarLinks>
+				<b:dropMenu value="Schwarzes Brett" href="#">
+					<b:navLink value="Meldung schreiben" href="#"></b:navLink>
+					<b:navLink value="Eigene Meldungen" href="#"></b:navLink>
+				</b:dropMenu>
+			</b:navbarLinks>
+		</ui:define>
+		
+		<ui:define name="nav_button_second">
+			<b:navbarLinks>
+				<b:dropMenu value="Unterlagen" href="#ss">
+					<b:navLink value="Vorlagen" href="#"></b:navLink>
+					<b:navLink value="Einreichungen" href="#"></b:navLink>
+					<b:navLink value="Unterlagen verwalten" href="#"></b:navLink>
+				</b:dropMenu>
+			</b:navbarLinks>
+		</ui:define>
+		
+		<ui:define name="nav_button_third">
+			<b:navbarLinks>
+				<b:navLink value="Chat" href="#"></b:navLink>
+			</b:navbarLinks>
+		</ui:define>
+
+		<ui:define name="nav_button_right">
+			<b:navbarLinks pull="right" styleClass="hidden-xs">
+				<form class="navbar-form navbar-right hidden-md hidden-sm hidden-xs">
+					<b:form>
+						<b:commandButton value="Logout" action="placeholder"
+							look="danger">
+						</b:commandButton>
+					</b:form>
+				</form>
+			</b:navbarLinks>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

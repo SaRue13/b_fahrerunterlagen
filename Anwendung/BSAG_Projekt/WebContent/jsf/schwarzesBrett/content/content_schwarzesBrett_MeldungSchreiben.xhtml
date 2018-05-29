@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet name="css/style.css" position="last" />
+</h:head>
+<h:body>
+	<ui:composition template="content_template.xhtml">
+
+
+		<ui:define name="content_sidebar">
+			<b:column span="3" style="border-right:1px solid #D3D3D3;">
+
+				<ui:include src="sidebar_meldungsArten.xhtml" />
+			</b:column>
+		</ui:define>
+
+
+
+		<ui:define name="content_content">
+
+			<b:column span="8"> <!-- TODO: check span -->
+				<h3>Formular placeholder</h3>
+				<p>Betroffene Stationen: Hauptbahnhof</p>
+
+				<p>Betroffene Linien:</p>
+				<b:label span="3" text="3" severity="success" />
+				<b:label span="3" text="6" severity="danger" />
+				<b:label span="3" text="25" severity="info" />
+				<b:label span="3" text="4" severity="default" />
+				<hr></hr>
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+					duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+					sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+					consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+					ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+					eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+					gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				<b:column span="6">
+					<p>Kennziffer: #341229</p>
+				</b:column>
+				<p>Abt. Streckenführung</p>
+
+			</b:column>
+
+		</ui:define>
+
+
+	</ui:composition>
+
+</h:body>
+</html>
+

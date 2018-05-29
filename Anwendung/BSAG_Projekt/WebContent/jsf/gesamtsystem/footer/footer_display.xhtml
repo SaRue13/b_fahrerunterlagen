@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+</h:head>
+<h:body>
+
+	<ui:composition template="footer_template.xhtml">
+
+		<ui:define name="footer_content">
+			<b:container>
+				<b:container>
+					<footer>
+						<hr />
+						<div>
+							<b:column col-md="3">
+								<p>Meine BSAG</p>
+							</b:column>
+							<b:column col-md="5" offset-md="4" class="text-right">
+								<a href="#">Impressum</a>     |
+                                <a href="#">Datenschutz</a>   |
+                                <a href="#">AGBs</a>          |
+                                <a href="#">Widerrufsbelehrung</a>
+							</b:column>
+						</div>
+					</footer>
+				</b:container>
+			</b:container>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

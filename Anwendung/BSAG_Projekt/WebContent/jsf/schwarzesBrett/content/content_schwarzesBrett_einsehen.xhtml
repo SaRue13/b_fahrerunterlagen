@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet name="css/style.css" position="last" />
+</h:head>
+<h:body>
+	<ui:composition template="content_template.xhtml">
+		<ui:define name="content_content">
+			<b:container>
+				<b:column span="6">
+
+					<b:row>
+
+						<b:column span="12">
+							<b:panel title="Dienstpicker --Working Title--">
+								<!-- 	<h3>Dienstpicker Working Title</h3> -->
+
+								<b:formGroup>
+									<b:selectBooleanCheckbox value="a"
+										caption="Alle Dienste anzeigen" />
+									<b:datepicker span="6" mode="popup-icon"
+										placeholder="Wähle einen Zeitraum"></b:datepicker>
+									<b:datepicker span="6" mode="popup-icon"
+										placeholder="Wähle einen Zeitraum"></b:datepicker>
+
+								</b:formGroup>
+							</b:panel>
+						</b:column>
+
+
+					</b:row>
+
+
+					<b:row>
+
+						<b:column span="12">
+							<b:panel title="Fahrtrelevante Informationen --Working Title--">
+								<b:button span="6" value="Meldung1"></b:button>
+								<b:button span="6" value="Meldung2"></b:button>
+
+								<b:button span="6" value="Meldung3"></b:button>
+								<b:button span="6" value="Meldung4"></b:button>
+
+								<b:button span="6" value="Meldung5"></b:button>
+								<b:button span="6" value="Meldung6"></b:button>
+							</b:panel>
+						</b:column>
+
+					</b:row>
+
+
+					<b:row>
+
+						<b:column span="6">
+							<b:panel title="Betriebsinformationen --Working Title--">
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+							</b:panel>
+						</b:column>
+
+
+						<b:column span="6">
+							<b:panel title="Sonstiges --Working Title--">
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+								<b:button span="12" value="Meldung"></b:button>
+							</b:panel>
+						</b:column>
+
+
+					</b:row>
+
+				</b:column>
+				<b:column span="6">
+					<h3>Streckensperrung - Hauptbahnhof</h3>
+					<p>Betroffene Stationen: Hauptbahnhof</p>
+					
+					<p>Betroffene Linien:</p>
+					<b:label span="3" text="3" severity="success" />
+					<b:label span="3" text="6" severity="danger" />
+					<b:label span="3" text="25" severity="info" />
+					<b:label span="3" text="4" severity="default" />
+					<hr></hr>
+					<p>  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+					</p>
+				<b:column span="6">
+					<p >Kennziffer: #341229 </p>
+					</b:column>
+					<p >Abt. Streckenführung </p>
+					
+				</b:column>
+			</b:container>
+
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>
+
