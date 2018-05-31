@@ -8,9 +8,8 @@
 	xmlns:b="http://bootsfaces.net/ui">
 
 
-<b:column>
-<!-- Bitte eigene Sidebar entwerfen. Das ist nur ein unschoener Platzhalter. 
-	Am besten mit Dilber und Cidem absprechen, dann müssen keine zwei Sidebars entwickelt werden-->
+<!--  b:column>
+
 	<b:row>
 		<b:button  value="Vorlage 1"></b:button>
 	</b:row>
@@ -23,6 +22,16 @@
 	<b:row>
 		<b:button value="Vorlage 1"></b:button>
 	</b:row>
+</b:column-->
+<!-- b:column style="border-right:1px solid #D3D3D3;"-->
+<b:column >
+<h:outputText id="sidebar_header" value="#{txt.FuSidebarHeader}" />
+<b:navBar >
+	<b:navbarLinks>
+		<ui:repeat var="typ" value="#{mainBean.typen}" >
+			<b:navLink value="#{typ}" />
+		</ui:repeat>
+	</b:navbarLinks>
+</b:navBar>
 </b:column>
-
 </html>

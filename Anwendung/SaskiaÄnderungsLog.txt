@@ -1,0 +1,2 @@
+31.05.18
+Fundzettel(original) hat keine P-Nr. Ich ersetze Fahrer_name durch P-Nr.

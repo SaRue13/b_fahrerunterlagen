@@ -9,9 +9,6 @@
 
 <ui:composition template="../../layout/template.xhtml">
 	<ui:define name="nav">
-
-	</ui:define>
-	<ui:define name="nav">
 		<ui:include src="../../gesamtsystem/nav/nav_display.xhtml" />
 	</ui:define>
 
@@ -29,14 +26,12 @@
 		<ui:composition>
 			<b:container >
 				<b:row>
-
-					<b:column span="3">
+					<b:column col-md="3" col-xs="12" >
 						<ui:insert name="sidebar_fahrerunterlagen">
 							<p>Sidebar</p>
 						</ui:insert>
 					</b:column>
-
-					<b:column span="9">
+					<b:column col-md="8" col-xs="12" style="border-left:1px solid #D3D3D3;">
 						<ui:insert name="content_fahrerunterlagen">
 							<p>Inhalte des Teilbereichs "Fahrerunterlagen</p>
 						</ui:insert>

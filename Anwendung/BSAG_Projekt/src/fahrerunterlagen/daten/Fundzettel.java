@@ -3,6 +3,7 @@ package fahrerunterlagen.daten;
 import java.util.Date;
 
 public class Fundzettel extends Fahrerunterlage {
+	//!!!!!!!!!Ist die einzie FAhrerunterlage wo nicht nach der P-Nr gefragt wird, ich pack die dazu
 
 	private int linie;
 	private String strecke;
@@ -13,7 +14,6 @@ public class Fundzettel extends Fahrerunterlage {
 	private boolean vonFahrgast;
 	private boolean plus50;
 	private String stammNr;
-	private String fahrer_name; // über p-nr ermitteln
 	private String b;
 	private String nameFinder;
 	private String strasse;
@@ -23,11 +23,20 @@ public class Fundzettel extends Fahrerunterlage {
 	private int wert;
 	private String bemerkung;
 	private boolean sofortigeRueckgabe;
+	private int spind_nr;
 	
 	public Fundzettel() {
 		super();
 	}
 	
+	public int getSpind_nr() {
+		return spind_nr;
+	}
+
+	public void setSpind_nr(int spind_nr) {
+		this.spind_nr = spind_nr;
+	}
+
 	public int getLinie() {
 		return linie;
 	}
@@ -136,13 +145,15 @@ public class Fundzettel extends Fahrerunterlage {
 	public void setSofortigeRueckgabe(boolean sofortigeRueckgabe) {
 		this.sofortigeRueckgabe = sofortigeRueckgabe;
 	}
+
 	@Override
 	public String toString() {
 		return "Fundzettel [linie=" + linie + ", strecke=" + strecke + ", fundort=" + fundort + ", wagenNr=" + wagenNr
 				+ ", datumZeit=" + datumZeit + ", fundsache=" + fundsache + ", vonFahrgast=" + vonFahrgast + ", plus50="
 				+ plus50 + ", stammNr=" + stammNr + ", b=" + b + ", nameFinder=" + nameFinder + ", strasse=" + strasse
 				+ ", hausnummer=" + hausnummer + ", plz=" + plz + ", wohnort=" + wohnort + ", wert=" + wert
-				+ ", bemerkung=" + bemerkung + ", sofortigeRueckgabe=" + sofortigeRueckgabe + "]";
+				+ ", bemerkung=" + bemerkung + ", sofortigeRueckgabe=" + sofortigeRueckgabe + ", spind_nr=" + spind_nr
+				+ "]";
 	}
 	
 	
