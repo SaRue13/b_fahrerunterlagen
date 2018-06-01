@@ -26,5 +26,7 @@ public class FundzettelBean {
 		this.fundzettel = fundzettel;
 	}
 	
-	
+	public void speichern() {
+		System.out.println("Fundzettel: "+fundzettel.toString());
+	}
 }

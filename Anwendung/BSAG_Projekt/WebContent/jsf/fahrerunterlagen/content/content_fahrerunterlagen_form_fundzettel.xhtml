@@ -7,7 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 		xmlns:b="http://bootsfaces.net/ui">
 
-
+<!-- <f:view locale="en" /-->
 	<b:column >
 	<!-- zwei Teile: Formular und Buttonleiste
 	Inline: wie legt sich das um bei verkleinern des Bildschirms?
@@ -17,90 +17,113 @@
 		<h3>Fundzettel</h3>
 		
 		</b:row>
+		<!--  -->
 		<!-- Achtund datum und Zeit in Bean zusammenbasteln! -->
-			<b:panelGrid colSpans="2,5,5">
+			<b:panelGrid colSpans="3,5,4">
 				<h:outputLabel value="#{txt.fuFundzettelLine}" for="fundzettelLine" />
-				<h:selectOneMenu id="fundzettelLinie" value="#{fundzettelBean.fundzettel.linie}" required="true" >
+				<b:selectOneMenu id="fundzettelLine" value="#{fundzettelBean.fundzettel.linie}" required="true" >
 					<f:selectItem itemValue="" itemLabel="#{txt.fuFundzettelLineDef}" />
 					<f:selectItems value="#{mainBean.linien}"/>
-				</h:selectOneMenu>
-				<h:message for="fundzettelLinie" />
+				</b:selectOneMenu>
+				<b:message for="fundzettelLine" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelStrecke}" for="fundzettelStrecke" />
-				<h:inputText id="fundzettelStrecke" value="#{fundzettelBean.fundzettel.strecke}" required="true" />
-				<h:message for="fundzettelStrecke" />
+				<b:inputText id="fundzettelStrecke" value="#{fundzettelBean.fundzettel.strecke}" required="true" />
+				<b:message for="fundzettelStrecke" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelFundort}" for="fundzettelFundort" />
-				<h:inputText id="fundzettelFundort" value="#{fundzettelBean.fundzettel.fundort}" required="true" />
-				<h:message for="fundzettelFundort" />
+				<b:inputText id="fundzettelFundort" value="#{fundzettelBean.fundzettel.fundort}" required="true" />
+				<b:message for="fundzettelFundort" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelWagennr}" for="fundzettelWagennr" />
-				<h:inputText id="fundzettelWagennr" value="#{fundzettelBean.fundzettel.wagenNr}" required="true" />
-				<h:message for="fundzettelWagennr" />
+				<b:inputText id="fundzettelWagennr" value="#{fundzettelBean.fundzettel.wagenNr}" required="true" />
+				<b:message for="fundzettelWagennr" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelDatumZeit}" for="fundzettelDatumZeit" />
-				
-				<h:inputText id="fundzettelDatumZeit" value="#{fundzettelBean.fundzettel.datumZeit}" required="true" />
-				<h:message for="fundzettelDatumZeit" />
+				<b:dateTimePicker id="fundzettelDatumZeit" value="#{fundzettelBean.fundzettel.datumZeit}" side-by-side="true" format="#{txt.fuDatumZeitFormat}" required="true" />
+				<b:message for="fundzettelDatumZeit" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelFundsache}" for="fundzettelFundsache" />
-				<h:inputText id="fundzettelFundsache" value="#{fundzettelBean.fundzettel.fundsache}" required="true" />
-				<h:message for="fundzettelFundsache" />
+				<b:inputText id="fundzettelFundsache" value="#{fundzettelBean.fundzettel.fundsache}" required="true" />
+				<b:message for="fundzettelFundsache" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelVonFahrgast}" for="fundzettelVonFahrgast" />
 				<b:selectBooleanCheckbox value="#{fundzettelBean.fundzettel.vonFahrgast}" id="fundzettelVonFahrgast" />
-				<h:message for="fundzettelVonFahrgast" />
+				<b:message for="fundzettelVonFahrgast" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelUe50}" for="fundzettelUe50" />
 				<b:selectBooleanCheckbox value="#{fundzettelBean.fundzettel.plus50}" id="fundzettelUe50" />
-				<h:message for="fundzettelUe50" />
+				<b:message for="fundzettelUe50" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelPnr}" for="fundzettelPnr" />
-				<h:inputText id="fundzettelPnr" value="#{fundzettelBean.fundzettel.p_nr_fahrer}" required="true" />
-				<h:message for="fundzettelPnr" />
+				<b:inputText id="fundzettelPnr" value="#{fundzettelBean.fundzettel.p_nr_fahrer}" required="true" />
+				<b:message for="fundzettelPnr" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelStamm}" for="fundzettelStamm" />
-				<h:inputText id="fundzettelStamm" value="#{fundzettelBean.fundzettel.stammNr}" required="true" />
-				<h:message for="fundzettelStamm" />
+				<b:inputText id="fundzettelStamm" value="#{fundzettelBean.fundzettel.stammNr}" required="true" />
+				<b:message for="fundzettelStamm" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelB}" for="fundzettelB" />
-				<h:inputText id="fundzettelB" value="#{fundzettelBean.fundzettel.b}" required="true" />
-				<h:message for="fundzettelB" />
+				<b:inputText id="fundzettelB" value="#{fundzettelBean.fundzettel.b}" required="true" />
+				<b:message for="fundzettelB" />
 				
-				<row>
-				<h:outputText value="#{txt.fuFinder}" />
-				</row>
+				<b:column  ></b:column>
+				<b:column span="8" >
+				<h:outputText value="#{txt.fuFinder}"></h:outputText></b:column>
+				<b:column span="4" ></b:column>
+				
 				
 				<h:outputLabel value="#{txt.fuFundzettelNameFinder}" for="fundzettelNameFinder" />
-				<h:inputText id="fundzettelNameFinder" value="#{fundzettelBean.fundzettel.nameFinder}" />
-				<h:message for="fundzettelNameFinder" />
+				<b:inputText id="fundzettelNameFinder" value="#{fundzettelBean.fundzettel.nameFinder}" />
+				<b:message for="fundzettelNameFinder" />
 				
-				<h:outputLabel value="#{txt.fuFundzettelStrasse}" for="fundzettelStrasse" />
-				<h:inputText id="fundzettelStrasse" value="#{fundzettelBean.fundzettel.strasse}" />
-				<h:message for="fundzettelStrasse" />
+				<h:outputLabel value="#{txt.fuFundzettelStrasseNr}" for="fundzettelStrasseNr" />
+				<b:column id="fundzettelStrasseNr">
+					<b:row>
+					<b:column col-md="8" col-xs="12" >
+						<b:inputText value="#{fundzettelBean.fundzettel.strasse}" />
+					</b:column>
+					<b:column col-md="4" col-xs="6" >
+						<b:inputText value="#{fundzettelBean.fundzettel.hausnummer}" />
+					</b:column>
+					</b:row>
+				</b:column>
+				<b:message for="fundzettelStrasseNr" />
 				
-				<h:outputLabel value="#{txt.fuFundzettelHausnummer}" for="fundzettelHausnummer" />
-				<h:inputText id="fundzettelHausnummer" value="#{fundzettelBean.fundzettel.hausnummer}" />
-				<h:message for="fundzettelHausnummer" />
-				
-				<h:outputLabel value="#{txt.fuFundzettelPlz}" for="fundzettelPlz" />
-				<h:inputText id="fundzettelPlz" value="#{fundzettelBean.fundzettel.plz}" />
-				<h:message for="fundzettelPlz" />
+				<h:outputLabel value="#{txt.fuFundzettelPlzOrt}" for="fundzettelPlzOrt" />
+				<b:column >
+				<b:row id="fundzettelPlzOrt" >
+					<b:column col-md="4" col-xs="6" >
+						<b:inputText  value="#{fundzettelBean.fundzettel.plz}" />
+					</b:column>
+					<b:column col-md="8" col-xs="12">
+						<b:inputText value="#{fundzettelBean.fundzettel.wohnort}" />
+					</b:column>
+				</b:row>
+				</b:column>
+				<b:message for="fundzettelPlzOrt" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelWert}" for="fundzettelWert" />
-				<h:inputText id="fundzettelWert" value="#{fundzettelBean.fundzettel.wert}" />
-				<h:message for="fundzettelWert" />
+				<b:inputText id="fundzettelWert" value="#{fundzettelBean.fundzettel.wert}" />
+				<b:message for="fundzettelWert" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelBemerkung}" for="fundzettelBemerkung" />
-				<h:inputText id="fundzettelBemerkung" value="#{fundzettelBean.fundzettel.bemerkung}" />
-				<h:message for="fundzettelBemerkung" />
+				<b:inputText id="fundzettelBemerkung" value="#{fundzettelBean.fundzettel.bemerkung}" />
+				<b:message for="fundzettelBemerkung" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelSofortige}" for="fundzettelSofortige" />
 				<b:selectBooleanCheckbox value="#{fundzettelBean.fundzettel.sofortigeRueckgabe}" id="fundzettelSofortige" />
-				<h:message for="fundzettelSofortige" />
+				<b:message for="fundzettelSofortige" />
 				
 				<!-- Fehlt noch eine Eingabe für eine Spindnummer aber nicht durch Fahrer -->
 			</b:panelGrid>
+			<b:row>
+<b:buttonGroup col-md="6" offset-md="2" col-xs="10" offset-xs="1" >
+  <b:commandButton value="#{txt.fuButtonSpeichern}" action="#{fundzettelBean.speichern}" />
+  <b:commandButton value="#{txt.fuButtonAbbrechen}" action="#" />
+  <b:commandButton value="#{txt.fuButtonEinreichen}" action="#" />
+</b:buttonGroup>
+</b:row>
 	
 		
 	</b:column>
