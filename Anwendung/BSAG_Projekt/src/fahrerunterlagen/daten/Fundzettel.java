@@ -153,7 +153,7 @@ public class Fundzettel extends Fahrerunterlage {
 				+ plus50 + ", stammNr=" + stammNr + ", b=" + b + ", nameFinder=" + nameFinder + ", strasse=" + strasse
 				+ ", hausnummer=" + hausnummer + ", plz=" + plz + ", wohnort=" + wohnort + ", wert=" + wert
 				+ ", bemerkung=" + bemerkung + ", sofortigeRueckgabe=" + sofortigeRueckgabe + ", spind_nr=" + spind_nr
-				+ "]";
+				+ ", BASISDATEN: "+super.toString()+ "]";
 	}
 	
 	

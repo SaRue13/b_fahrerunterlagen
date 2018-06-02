@@ -17,34 +17,41 @@
 		<h3>Fundzettel</h3>
 		
 		</b:row>
-		<!--  -->
-		<!-- Achtund datum und Zeit in Bean zusammenbasteln! -->
+			<h:outputLabel value="#{txt.fuFormularTitel}" for="fundzettelTitel" />
+				<b:inputText id="fundzettelTitel" value="#{fundzettelBean.fundzettel.titel}"  required="true" />
+			<b:message for="fundzettelTitel" />
 			<b:panelGrid colSpans="3,5,4">
 				<h:outputLabel value="#{txt.fuFundzettelLine}" for="fundzettelLine" />
-				<b:selectOneMenu id="fundzettelLine" value="#{fundzettelBean.fundzettel.linie}" required="true" >
+				<b:selectOneMenu id="fundzettelLine" value="#{fundzettelBean.fundzettel.linie}" required="#{not empty param[fundButtonEinreichen.clientId]}" >
 					<f:selectItem itemValue="" itemLabel="#{txt.fuFundzettelLineDef}" />
 					<f:selectItems value="#{mainBean.linien}"/>
 				</b:selectOneMenu>
 				<b:message for="fundzettelLine" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelStrecke}" for="fundzettelStrecke" />
-				<b:inputText id="fundzettelStrecke" value="#{fundzettelBean.fundzettel.strecke}" required="true" />
+				<b:inputText id="fundzettelStrecke" value="#{fundzettelBean.fundzettel.strecke}" required="#{not empty param[fundButtonEinreichen.clientId]}" >
+					<!-- <f:validator validatorId="requiredStatus" />
+					<f:attribute name="status" value="#{instantStatus}" /> -->
+				</b:inputText>
 				<b:message for="fundzettelStrecke" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelFundort}" for="fundzettelFundort" />
-				<b:inputText id="fundzettelFundort" value="#{fundzettelBean.fundzettel.fundort}" required="true" />
+				<b:inputText id="fundzettelFundort" value="#{fundzettelBean.fundzettel.fundort}" required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelFundort" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelWagennr}" for="fundzettelWagennr" />
-				<b:inputText id="fundzettelWagennr" value="#{fundzettelBean.fundzettel.wagenNr}" required="true" />
+				<b:inputText id="fundzettelWagennr" value="#{fundzettelBean.fundzettel.wagenNr}" required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelWagennr" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelDatumZeit}" for="fundzettelDatumZeit" />
-				<b:dateTimePicker id="fundzettelDatumZeit" value="#{fundzettelBean.fundzettel.datumZeit}" side-by-side="true" format="#{txt.fuDatumZeitFormat}" required="true" />
+				<b:dateTimePicker id="fundzettelDatumZeit" value="#{fundzettelBean.fundzettel.datumZeit}" side-by-side="true" format="#{txt.fuDatumZeitFormat}" required="#{not empty param[fundButtonEinreichen.clientId]}" >
+					<!-- <f:validator validatorId="requiredStatus" />
+					<f:attribute name="status" value="#{instantStatus}" /> -->
+				</b:dateTimePicker>
 				<b:message for="fundzettelDatumZeit" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelFundsache}" for="fundzettelFundsache" />
-				<b:inputText id="fundzettelFundsache" value="#{fundzettelBean.fundzettel.fundsache}" required="true" />
+				<b:inputText id="fundzettelFundsache" value="#{fundzettelBean.fundzettel.fundsache}"  required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelFundsache" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelVonFahrgast}" for="fundzettelVonFahrgast" />
@@ -56,15 +63,15 @@
 				<b:message for="fundzettelUe50" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelPnr}" for="fundzettelPnr" />
-				<b:inputText id="fundzettelPnr" value="#{fundzettelBean.fundzettel.p_nr_fahrer}" required="true" />
+				<b:inputText id="fundzettelPnr" value="#{fundzettelBean.fundzettel.p_nr_fahrer}" required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelPnr" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelStamm}" for="fundzettelStamm" />
-				<b:inputText id="fundzettelStamm" value="#{fundzettelBean.fundzettel.stammNr}" required="true" />
+				<b:inputText id="fundzettelStamm" value="#{fundzettelBean.fundzettel.stammNr}" required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelStamm" />
 				
 				<h:outputLabel value="#{txt.fuFundzettelB}" for="fundzettelB" />
-				<b:inputText id="fundzettelB" value="#{fundzettelBean.fundzettel.b}" required="true" />
+				<b:inputText id="fundzettelB" value="#{fundzettelBean.fundzettel.b}" required="#{not empty param[fundButtonEinreichen.clientId]}" />
 				<b:message for="fundzettelB" />
 				
 				<b:column  ></b:column>
@@ -118,11 +125,16 @@
 				<!-- Fehlt noch eine Eingabe für eine Spindnummer aber nicht durch Fahrer -->
 			</b:panelGrid>
 			<b:row>
-<b:buttonGroup col-md="6" offset-md="2" col-xs="10" offset-xs="1" >
-  <b:commandButton value="#{txt.fuButtonSpeichern}" action="#{fundzettelBean.speichern}" />
+<b:buttonGroup id="group" col-md="6" offset-md="2" col-xs="10" offset-xs="1" >
+  <b:commandButton id="fundButtonSpeichern" binding="#{fundButtonSpeichern}" value="#{txt.fuButtonSpeichern}" action="#{fundzettelBean.speichern}" process="@form"  update="@form" >
+
+  </b:commandButton>
   <b:commandButton value="#{txt.fuButtonAbbrechen}" action="#" />
-  <b:commandButton value="#{txt.fuButtonEinreichen}" action="#" />
+  <b:commandButton id="fundButtonEinreichen" binding="#{fundButtonEinreichen}" value="#{txt.fuButtonEinreichen}" actionListener="#{fundzettelBean.einreichen}" process="@form"  update="@form" >
+
+  </b:commandButton>
 </b:buttonGroup>
+<!-- mit componenten binding den status setzen? -->
 </b:row>
 	
 		

@@ -3,8 +3,16 @@ package fahrerunterlagen.beans;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 import fahrerunterlagen.daten.Fundzettel;
+
+
+/*
+ * Differenzierte Validierung für speichern/einreichen:
+ * Evtl mit Actionlistener attribut des -Buttons abgreifen (speich/einreich)
+ * damit einen Status setzen und den in einer required Validierungsmethode verwenden?
+ */
 
 @ManagedBean
 @SessionScoped
@@ -27,6 +35,15 @@ public class FundzettelBean {
 	}
 	
 	public void speichern() {
-		System.out.println("Fundzettel: "+fundzettel.toString());
+		System.out.println("Fundzettel, Speichern: "+fundzettel.toString());
 	}
+	
+	
+	public void einreichen() {
+		System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
+	}
+	/*public void speicherListener(ActionEvent event) {
+		String status = (String)event.getComponent().getAttributes().get("status");
+		System.out.println("Status: "+status);
+	}*/
 }
