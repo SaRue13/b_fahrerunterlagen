@@ -11,7 +11,7 @@ public class Fundzettel extends Fahrerunterlage {
 	private String wagenNr;
 	private Date datumZeit;
 	private String fundsache;
-	private boolean vonFahrgast;
+	private boolean vonFahrgast = false;
 	private boolean plus50;
 	private String stammNr;
 	private String b;
@@ -77,6 +77,7 @@ public class Fundzettel extends Fahrerunterlage {
 		return vonFahrgast;
 	}
 	public void setVonFahrgast(boolean vonFahrgast) {
+		System.out.println("von Fahrgast = "+vonFahrgast);
 		this.vonFahrgast = vonFahrgast;
 	}
 	public boolean isPlus50() {

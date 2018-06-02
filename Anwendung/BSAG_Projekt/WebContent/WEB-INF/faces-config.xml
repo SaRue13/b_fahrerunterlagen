@@ -16,6 +16,10 @@
     		<base-name>string_ressourcen.strings</base-name>
     		<var>txt</var>
     	</resource-bundle>
+    	
+    	<message-bundle>
+		string_ressourcen.messages
+	</message-bundle>
    </application>
 
 </faces-config>
