@@ -1,0 +1,13 @@
+--delete * from status
+--delete * from unterlagentypen
+
+insert into status (statusname) values ('bearbeitet'), 
+('entwurf'), 
+('in_bearbeitung'), 
+('nicht_bearbeitet'), ('geloescht');
+
+insert into unterlagentypen values ('1', 'Fundzettel', 'fundzettel'),
+('2', 'Urlaubsantrag', 'urlaubsantraege'),
+('3', 'Verschmutzungsmeldung', 'verschmutzungsmeldungen'),
+('4', 'Wagenlaufkarte', 'wagenlaufkarten'),
+('5', '{Überstunden}', 'ueberstunden');

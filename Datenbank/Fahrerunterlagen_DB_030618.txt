@@ -1,3 +1,23 @@
+--drop table unterlagentypen
+--drop table status
+--drop table fahrerunterlagen
+--drop table fundzettel
+
+CREATE TABLE public.unterlagentypen
+(
+    typ_id integer NOT NULL,
+    typname character(30) COLLATE pg_catalog."default",
+    tabellename character(30) COLLATE pg_catalog."default",
+    CONSTRAINT typeid PRIMARY KEY (typ_id)
+);
+
+
+CREATE TABLE public.status
+(
+    statusname character(30) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT status_pk PRIMARY KEY (statusname)
+);
+
 CREATE TABLE public.fahrerunterlagen
 (
     typ_id integer,
@@ -7,7 +27,7 @@ CREATE TABLE public.fahrerunterlagen
     spreicherzeit timestamp without time zone,
     aenderungszeit timestamp without time zone,
     einreichungszeit timestamp without time zone,
-    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
+    fahrerunterlage_id serial NOT NULL,
     CONSTRAINT fahrerunterlage_pk PRIMARY KEY (fahrerunterlage_id),
     CONSTRAINT fahrerunterlagen_status FOREIGN KEY (status)
         REFERENCES public.status (statusname) MATCH SIMPLE
@@ -17,7 +37,7 @@ CREATE TABLE public.fahrerunterlagen
         REFERENCES public.unterlagentypen (typ_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 CREATE TABLE public.fundzettel
 (
@@ -39,20 +59,8 @@ CREATE TABLE public.fundzettel
     bemerkung character(100) COLLATE pg_catalog."default",
     sofortige_rueckgabe boolean,
     datum timestamp without time zone,
-    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fundzettel_fahrerunterlage_id_seq'::regclass),
+    fahrerunterlage_id serial NOT NULL,
     CONSTRAINT fundzettel_pk PRIMARY KEY (fahrerunterlage_id)
-)
+);
 
-CREATE TABLE public.status
-(
-    statusname character(30) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT status_pk PRIMARY KEY (statusname)
-)
 
-CREATE TABLE public.unterlagentypen
-(
-    typ_id integer NOT NULL,
-    typname character(30) COLLATE pg_catalog."default",
-    tabellename character(30) COLLATE pg_catalog."default",
-    CONSTRAINT typeid PRIMARY KEY (typ_id)
-)
