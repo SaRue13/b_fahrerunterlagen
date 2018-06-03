@@ -70,6 +70,7 @@ public class Fundzettel extends Fahrerunterlage {
 	@Column(name="sofortige_rueckgabe")
 	private boolean sofortigeRueckgabe;
 	
+	@Column(name="spind_nr")
 	private int spind_nr;
 	
 	public Fundzettel() {

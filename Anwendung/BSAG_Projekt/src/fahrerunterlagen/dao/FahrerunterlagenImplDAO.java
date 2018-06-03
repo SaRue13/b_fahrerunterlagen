@@ -20,11 +20,18 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 	
 	private Session currentSession;
 	private Transaction currentTransaction;
+	private static FahrerunterlagenImplDAO instance;
 	
-	public FahrerunterlagenImplDAO() {
+	private FahrerunterlagenImplDAO() {
 		
 	} 
 
+	public static synchronized FahrerunterlagenImplDAO getInstance() {
+		if (instance == null) {
+			instance = new FahrerunterlagenImplDAO();
+		}
+		return instance;
+	}
 	public Session openCurrentSession() {
 		currentSession = getSessionFactory().openSession();
 		return currentSession;

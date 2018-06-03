@@ -54,12 +54,23 @@ public abstract class Fahrerunterlage {
 	public Fahrerunterlage() {
 		//super();
 	}
-
-	public Date getDatum_sortiern() {
+	public Date getSpeicher_datum() {
 		return speicher_datum;
 	}
-	public void setDatum_sortiern(Date datum_sortiern) {
-		this.speicher_datum = datum_sortiern;
+	public void setSpeicher_datum(Date speicher_datum) {
+		this.speicher_datum = speicher_datum;
+	}
+	public Date getEinreichung_datum() {
+		return einreichung_datum;
+	}
+	public void setEinreichung_datum(Date einreichung_datum) {
+		this.einreichung_datum = einreichung_datum;
+	}
+	public Date getAenderung_datum() {
+		return aenderung_datum;
+	}
+	public void setAenderung_datum(Date aenderung_datum) {
+		this.aenderung_datum = aenderung_datum;
 	}
 	public int getFahrerunterlage_id() {
 		return fahrerunterlage_id;
