@@ -2,45 +2,75 @@ package fahrerunterlagen.daten;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+//import org.hibernate.annotations.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+
+
+@MappedSuperclass
+@Table(name="fahrerunterlagen")
 public abstract class Fahrerunterlage {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(table="fahrerunterlagen", name="fahrerunterlage_id")
 	private int fahrerunterlage_id;
-	private String typ;
+	
+	
+	@Column(table="fahrerunterlagen", name="typ_id")
+	private int typ;
+	
+	@Column(table="fahrerunterlagen", name="titel")
 	private String titel;
-	/*
-	 * Für das Sortieren nach Aktualität: wenn eingereicht, hier rein das Einreichungsdatum,
-	 * wenn bearbeitet, hier das Bearbeitungsdatum, wenn nur gespeichert, hier das 
-	 * Speicherdatum
-	 */
-	private Date datum_sortiern; 
+	
+	//----- Wir brauchen doch alle 3 Datums 
+	@Column(table="fahrerunterlagen",name="spreicherzeit")
+	private Date speicher_datum; 
+	
+	@Column(table="fahrerunterlagen",name="einreichungszeit")
+	private Date einreichung_datum; 
+	// Man kann nach aenderungzeit sortieren und diese Zeit nach jedem Aktivitaet mit diese Unterlage aktualisieren
+	@Column(table="fahrerunterlagen",name="aenderungszeit")
+	private Date aenderung_datum; 
+	//-----
+	
+	@Column(table="fahrerunterlagen", name="status")
 	private String status;
+	
+	@Column(table="fahrerunterlagen", name="fahrer_pers_nr")
 	private String p_nr_fahrer;
 	
 	public Fahrerunterlage() {
-		super();
+		//super();
 	}
-	
-	
+
 	public Date getDatum_sortiern() {
-		return datum_sortiern;
+		return speicher_datum;
 	}
-
-
 	public void setDatum_sortiern(Date datum_sortiern) {
-		this.datum_sortiern = datum_sortiern;
+		this.speicher_datum = datum_sortiern;
 	}
-
-
 	public int getFahrerunterlage_id() {
 		return fahrerunterlage_id;
 	}
 	public void setFahrerunterlage_id(int fahrerunterlage_id) {
 		this.fahrerunterlage_id = fahrerunterlage_id;
 	}
-	public String getTyp() {
+	public int getTyp() {
 		return typ;
 	}
-	public void setTyp(String typ) {
+	public void setTyp(int typ) {
 		this.typ = typ;
 	}
 	public String getTitel() {
@@ -62,13 +92,11 @@ public abstract class Fahrerunterlage {
 		this.p_nr_fahrer = p_nr_fahrer;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Fahrerunterlage [fahrerunterlage_id=" + fahrerunterlage_id + ", typ=" + typ + ", titel=" + titel
-				+ ", datum_sortiern=" + datum_sortiern + ", status=" + status + ", p_nr_fahrer=" + p_nr_fahrer + "]";
+				+ ", speicher_datum=" + speicher_datum + ", einreichung_datum=" + einreichung_datum
+				+ ", aenderung_datum=" + aenderung_datum + ", status=" + status + ", p_nr_fahrer=" + p_nr_fahrer + "]";
 	}
-	
-	
 
 }

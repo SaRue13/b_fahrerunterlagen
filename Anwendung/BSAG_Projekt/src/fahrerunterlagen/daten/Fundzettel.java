@@ -2,27 +2,74 @@ package fahrerunterlagen.daten;
 
 import java.util.Date;
 
-public class Fundzettel extends Fahrerunterlage {
-	//!!!!!!!!!Ist die einzie FAhrerunterlage wo nicht nach der P-Nr gefragt wird, ich pack die dazu
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="fundzettel")
+@SecondaryTable(name = "fahrerunterlagen", pkJoinColumns = @PrimaryKeyJoinColumn(name ="fahrerunterlage_id"))
+public class Fundzettel extends Fahrerunterlage {
+	
+	@Column(name="linie")
 	private String linie;
+	
+	@Column(name="strecke")
 	private String strecke;
+	
+	@Column(name="fundort")
 	private String fundort;
-	private String wagenNr;
+	
+	@Column(name="wg_nr")
+	private int wagenNr;
+	
+	@Column(name="datum")
 	private Date datumZeit;
+	
+	@Column(name="fundsache")
 	private String fundsache;
+	
+	@Column(name="vom_fahrgast_gefunden")
 	private boolean vonFahrgast = false;
+	
+	@Column(name="ueber_fuenfzig_euro")
 	private boolean plus50;
+	
+	@Column(name="stamm_nr")
 	private String stammNr;
+	
+	@Column(name="b")
 	private String b;
+	
+	@Column(name="finder_name")
 	private String nameFinder;
+	
+	@Column(name="strasse")
 	private String strasse;
+	
+	@Column(name="hausnr")
 	private String hausnummer;
+	
+	@Column(name="plz")
 	private int plz;
+	
+	@Column(name="wohnort")
 	private String wohnort;
+	
+	@Column(name="wert")
 	private int wert;
+	
+	@Column(name="bemerkung")
 	private String bemerkung;
+	
+	@Column(name="sofortige_rueckgabe")
 	private boolean sofortigeRueckgabe;
+	
 	private int spind_nr;
 	
 	public Fundzettel() {
@@ -32,11 +79,9 @@ public class Fundzettel extends Fahrerunterlage {
 	public int getSpind_nr() {
 		return spind_nr;
 	}
-
 	public void setSpind_nr(int spind_nr) {
 		this.spind_nr = spind_nr;
 	}
-
 	public String getLinie() {
 		return linie;
 	}
@@ -55,10 +100,10 @@ public class Fundzettel extends Fahrerunterlage {
 	public void setFundort(String fundort) {
 		this.fundort = fundort;
 	}
-	public String getWagenNr() {
+	public int getWagenNr() {
 		return wagenNr;
 	}
-	public void setWagenNr(String wagenNr) {
+	public void setWagenNr(int wagenNr) {
 		this.wagenNr = wagenNr;
 	}
 	public Date getDatumZeit() {
@@ -77,7 +122,6 @@ public class Fundzettel extends Fahrerunterlage {
 		return vonFahrgast;
 	}
 	public void setVonFahrgast(boolean vonFahrgast) {
-		System.out.println("von Fahrgast = "+vonFahrgast);
 		this.vonFahrgast = vonFahrgast;
 	}
 	public boolean isPlus50() {
@@ -154,8 +198,11 @@ public class Fundzettel extends Fahrerunterlage {
 				+ plus50 + ", stammNr=" + stammNr + ", b=" + b + ", nameFinder=" + nameFinder + ", strasse=" + strasse
 				+ ", hausnummer=" + hausnummer + ", plz=" + plz + ", wohnort=" + wohnort + ", wert=" + wert
 				+ ", bemerkung=" + bemerkung + ", sofortigeRueckgabe=" + sofortigeRueckgabe + ", spind_nr=" + spind_nr
-				+ ", BASISDATEN: "+super.toString()+ "]";
+				+", Basisdaten"+super.toString()+ "]";
 	}
+	
+	
+	
 	
 	
 }
