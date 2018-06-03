@@ -1,7 +1,8 @@
---drop table unterlagentypen
---drop table status
---drop table fahrerunterlagen
---drop table fundzettel
+--drop table fundzettel;
+--drop table fahrerunterlagen;
+--drop table unterlagentypen;
+--drop table status;
+
 
 CREATE TABLE public.unterlagentypen
 (
@@ -60,6 +61,7 @@ CREATE TABLE public.fundzettel
     sofortige_rueckgabe boolean,
     datum timestamp without time zone,
     fahrerunterlage_id serial NOT NULL,
+    spind_nr integer,
     CONSTRAINT fundzettel_pk PRIMARY KEY (fahrerunterlage_id)
 );
 
