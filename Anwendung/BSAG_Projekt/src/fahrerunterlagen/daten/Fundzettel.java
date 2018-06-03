@@ -5,7 +5,7 @@ import java.util.Date;
 public class Fundzettel extends Fahrerunterlage {
 	//!!!!!!!!!Ist die einzie FAhrerunterlage wo nicht nach der P-Nr gefragt wird, ich pack die dazu
 
-	private int linie;
+	private String linie;
 	private String strecke;
 	private String fundort;
 	private String wagenNr;
@@ -37,10 +37,10 @@ public class Fundzettel extends Fahrerunterlage {
 		this.spind_nr = spind_nr;
 	}
 
-	public int getLinie() {
+	public String getLinie() {
 		return linie;
 	}
-	public void setLinie(int linie) {
+	public void setLinie(String linie) {
 		this.linie = linie;
 	}
 	public String getStrecke() {
