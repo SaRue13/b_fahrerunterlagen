@@ -1,0 +1,12 @@
+Fahrerunterlagen:
+
+-jsf/fahrerunterlagen (jsf Content)
+-src/fahrerunterlagen (Java Klassen)
+-src/string_ressourcen (String-Ressourcen und Fehlermeldungen)
+-src/hibernate.confg.xml (Hibernate Konfiguration)
+-WEB-INF/lib (Hibernate libraries)
+-WEB-INF/web.xml (Definieren des content-parameters der auf faces-config.xml verweist)
+-WEB-INF/faces-config.xml (Definieren der ResourceBundles)
+
+Datenbankskripte:
+Unter Datenbank, eins für Create, eins für insert
