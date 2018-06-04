@@ -1,5 +1,6 @@
 package fahrerunterlagen.validators;
 
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
@@ -14,8 +15,17 @@ public class NotZeroValidator implements Validator{
 
 	@Override
 	public void validate(FacesContext context, UIComponent comp, Object obj) throws ValidatorException {
-		int input = (int)obj;
-		if(input == 0) {
+		//long input = (long)obj;
+		int input2 = (int) obj;
+		
+		Map<String,String> params = 
+                context.getExternalContext().getRequestParameterMap();
+	  String buttonEinreichen = params.get("fundzettelForm:fundButtonEinreichen");//fundzettelForm:fundButtonSpeichern
+		//System.out.println("NotZERO: "+buttonEinreichen);
+		
+		//Auf länge 4 Testen!
+		
+		if(buttonEinreichen != null && input2 == 0) {
 			String mb = context.getApplication().getMessageBundle();
 			ResourceBundle rb = ResourceBundle.getBundle(mb);
 			String message = rb.getString("fuZERO");
