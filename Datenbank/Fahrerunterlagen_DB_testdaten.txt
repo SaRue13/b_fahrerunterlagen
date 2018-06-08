@@ -11,3 +11,5 @@ insert into unterlagentypen values ('1', 'Fundzettel', 'fundzettel'),
 ('3', 'Verschmutzungsmeldung', 'verschmutzungsmeldungen'),
 ('4', 'Wagenlaufkarte', 'wagenlaufkarten'),
 ('5', '{Überstunden}', 'ueberstunden');
+
+INSERT INTO urlaubstyp VALUES ('X'), ('F'), ('Z'), ('U'), ('B');

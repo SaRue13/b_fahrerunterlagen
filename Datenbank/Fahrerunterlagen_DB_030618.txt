@@ -2,6 +2,9 @@
 --drop table fahrerunterlagen;
 --drop table unterlagentypen;
 --drop table status;
+--drop table Urlaubstag;
+--drop table urlaubstyp;
+--drop table urlaubsantrag;
 
 
 CREATE TABLE public.unterlagentypen
@@ -63,6 +66,42 @@ CREATE TABLE public.fundzettel
     fahrerunterlage_id serial NOT NULL,
     spind_nr integer,
     CONSTRAINT fundzettel_pk PRIMARY KEY (fahrerunterlage_id)
+);
+
+CREATE TABLE public.urlaubstyp
+(
+    typname "char" NOT NULL,
+    CONSTRAINT typ_pk PRIMARY KEY (typname)
+);
+
+CREATE TABLE public.urlaubsantrag
+(
+    fahrerunterlage_id serial NOT NULL,
+    b character(20) COLLATE pg_catalog."default",
+    gl character(20) COLLATE pg_catalog."default",
+    schulpflicht boolean,
+    osterferien boolean,
+    herbstferien boolean,
+    urlaubsanspruch integer,
+    CONSTRAINT fahrerunterlage_id_pk PRIMARY KEY (fahrerunterlage_id)
+);
+
+CREATE TABLE public.urlaubstag
+(
+    tag_id serial NOT NULL,
+    urlaubsantrag_id integer NOT NULL,
+    typ "char",
+    datum date,
+    wichtigkeit integer,
+    CONSTRAINT tag_id PRIMARY KEY (tag_id),
+    CONSTRAINT typ_fk FOREIGN KEY (typ)
+        REFERENCES public.urlaubstyp (typname) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT urlaubsantrad_fk FOREIGN KEY (urlaubsantrag_id)
+        REFERENCES public.urlaubsantrag (fahrerunterlage_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 
 
