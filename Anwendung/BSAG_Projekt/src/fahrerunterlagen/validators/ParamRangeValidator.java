@@ -17,8 +17,8 @@ import javax.faces.validator.ValidatorException;
  * custom lengthValidator: Bekommt als Parameter mit was min und max ist und
  * reagiert nicht, wenn Speichern gedrückt wird
  */
-@FacesValidator(value = "paramLength")
-public class ParamLengthValidator implements Validator{
+@FacesValidator(value = "paramRange")
+public class ParamRangeValidator implements Validator{
 	
 	//1: min und max parameter verwerten
 	//2. (vor erstens...) checken ob einreichenButton-id = null
@@ -34,12 +34,8 @@ public class ParamLengthValidator implements Validator{
 		
 		String minS = (String) comp.getAttributes().get("min");
 		String maxS = (String) comp.getAttributes().get("max");
-//		System.out.println("ParamLengthValidator: min="+minS);
-//		System.out.println("ParamLengthValidator");
 		//int input = (int) obj;
 		long input = (long) obj;
-		//ich will anzahl der ziffern
-		long size = (long) Math.log10(input) + 1;
 //		int min = Integer.parseInt(minS);
 //		int max = Integer.parseInt(maxS);
 		long min = Long.parseLong(minS);
@@ -61,30 +57,17 @@ public class ParamLengthValidator implements Validator{
 			 
 		 */
 		
-		if(size < min) {
+		if(input < min || input > max) {
 			/*String message = rb.getString("fuMINValidation");
 			String messageDetail = rb.getString("fuMINValidation_detail");
 			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, message, messageDetail));*/
 			//Nutzen jeweils nur {0} für min/max Wert
-//			String messagePattern = rb.getString("fuMINValidation");
-//			MessageFormat form1 = new MessageFormat(messagePattern);
-//			String messageDetailPattern = rb.getString("fuMINValidation_detail");
-//			MessageFormat form2 = new MessageFormat(messageDetailPattern);
 //			int[] param = new int[1];
-			Object[] param = new Object[1];
-			param[0] = min;
+			Object[] param = new Object[2];
+			param[0] = minS;
+			param[1] = maxS;
 			//context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, form1.format(param), form2.format(param)));
-			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, MessageFormat.format(rb.getString("fuMINValidation"), param), MessageFormat.format(rb.getString("fuMINValidation_detail"), param)));
-					
-		}
-		if( size > max) {
-//			String message = rb.getString("fuMAX");
-//			String messageDetail = rb.getString("fuMAX_detail");
-			//context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, message, messageDetail));
-			Object[] param2 = new Object[1];
-			param2[0] = max;
-			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, MessageFormat.format(rb.getString("fuMAX"), param2), MessageFormat.format(rb.getString("fuMAX_detail"), param2)));
-			
+			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, MessageFormat.format(rb.getString("fuRange"), param), MessageFormat.format(rb.getString("fuRange_detail"), param)));
 					
 		}
 	  }

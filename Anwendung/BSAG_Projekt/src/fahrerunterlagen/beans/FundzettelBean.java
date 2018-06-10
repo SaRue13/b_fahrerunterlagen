@@ -50,6 +50,7 @@ public class FundzettelBean {
 		fahrerunterlagenService.unterlageSpeichern(fundzettel);
 		//fundzettel = new Fundzettel();
 		clearDatum();
+		clearVonFahrgast();
 	}
 	
 	
@@ -65,12 +66,20 @@ public class FundzettelBean {
 			fahrerunterlagenService.unterlageBearbeiten(fundzettel);
 		}
 		clearDatum();
+		clearVonFahrgast();
 	}
 	
 	private void clearDatum() {
 		fundzettel.setAenderung_datum(null);
 		fundzettel.setSpeicher_datum(null);
 		fundzettel.setEinreichung_datum(null);
+	}
+	private void clearVonFahrgast() {
+		fundzettel.setNameFinder(null);
+		fundzettel.setStrasse(null);
+		fundzettel.setHausnummer(null);
+		fundzettel.setPlz(0);
+		fundzettel.setWohnort(null);
 	}
 	/*public void speicherListener(ActionEvent event) {
 		String status = (String)event.getComponent().getAttributes().get("status");
