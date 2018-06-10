@@ -61,6 +61,7 @@
 		<b:inputText id="fundzettelWagennr"
 			value="#{fundzettelBean.fundzettel.wagenNr}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}" >
+			<f:convertNumber pattern="0000" ></f:convertNumber>
 			<f:validator validatorId="notZero" />
 			<f:validator validatorId="paramLength" />
 				<f:attribute name="min" value="4" />
@@ -121,6 +122,31 @@
 			id="fundzettelUe50" />
 		<b:message for="fundzettelUe50" />
 		
+		<h:outputLabel value="#{txt.fuFundzettelWert}" for="fundzettelWert" />
+		<b:inputText id="fundzettelWert"
+			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" >
+			<f:convertNumber ></f:convertNumber>
+			<f:validator validatorId="notZero" />
+			<f:validator validatorId="paramRange" />
+				<f:attribute name="min" value="2" />
+				<f:attribute name="max" value="2000" />
+		</b:inputText>
+		<b:message for="fundzettelWert" />
+		
+		<h:outputLabel value="#{txt.fuFundzettelBemerkung}"
+			for="fundzettelBemerkung" />
+		<b:inputText id="fundzettelBemerkung"
+			value="#{fundzettelBean.fundzettel.bemerkung}" />
+		<b:message for="fundzettelBemerkung" />
+		
+		
+		<h:outputLabel value="#{txt.fuFundzettelSofortige}"
+			for="fundzettelSofortige" />
+		<b:selectBooleanCheckbox
+			value="#{fundzettelBean.fundzettel.sofortigeRueckgabe}"
+			id="fundzettelSofortige" />
+		<b:message for="fundzettelSofortige" />
+		
 		
 		<h:outputLabel value="#{txt.fuFinder}" ></h:outputLabel>
 		<b:column></b:column>
@@ -168,10 +194,11 @@
 			<b:row id="fundzettelPlzOrt">
 				<b:column col-md="4" col-xs="6">
 					<b:inputText id="fundzettelPlz" value="#{fundzettelBean.fundzettel.plz}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" >
-						<f:validator validatorId="notZero" />
-						<f:validator validatorId="paramLength" />
-						<f:attribute name="min" value="4" />
-						<f:attribute name="max" value="4" /> 
+						<f:convertNumber pattern="00000"></f:convertNumber>
+					<f:validator validatorId="notZero" />
+					<f:validator validatorId="paramRange" />
+					<f:attribute name="min" value="1001" />
+					<f:attribute name="max" value="99998" />
 					<!-- 	<f:validateLongRange minimum="1001" maximum="99998" disabled="#{not empty param[fundButtonSpeichern.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />-->
 					</b:inputText>
 				</b:column>
@@ -184,29 +211,6 @@
 		<b:message for="fundzettelPlz" />
 		<b:message for="fundzettelOrt" />
 		</b:column>
-
-		<h:outputLabel value="#{txt.fuFundzettelWert}" for="fundzettelWert" />
-		<b:inputText id="fundzettelWert"
-			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" >
-					<f:validator validatorId="notZero" />
-					<f:validator validatorId="paramLength" />
-					<f:attribute name="min" value="4" />
-					<f:attribute name="max" value="4" /> 
-		</b:inputText>
-		<b:message for="fundzettelWert" />
-
-		<h:outputLabel value="#{txt.fuFundzettelBemerkung}"
-			for="fundzettelBemerkung" />
-		<b:inputText id="fundzettelBemerkung"
-			value="#{fundzettelBean.fundzettel.bemerkung}" />
-		<b:message for="fundzettelBemerkung" />
-
-		<h:outputLabel value="#{txt.fuFundzettelSofortige}"
-			for="fundzettelSofortige" />
-		<b:selectBooleanCheckbox
-			value="#{fundzettelBean.fundzettel.sofortigeRueckgabe}"
-			id="fundzettelSofortige" />
-		<b:message for="fundzettelSofortige" />
 
 		<!-- Fehlt noch eine Eingabe für eine Spindnummer aber nicht durch Fahrer -->
 	</b:panelGrid>

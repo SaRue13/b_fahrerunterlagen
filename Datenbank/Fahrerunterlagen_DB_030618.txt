@@ -1,11 +1,11 @@
 --drop table fundzettel;
---drop table fahrerunterlagen;
---drop table unterlagentypen;
---drop table status;
+--drop table wagenlaufkarte;
 --drop table Urlaubstag;
 --drop table urlaubstyp;
 --drop table urlaubsantrag;
-
+--drop table fahrerunterlagen;
+--drop table unterlagentypen;
+--drop table status;
 
 CREATE TABLE public.unterlagentypen
 (
@@ -22,16 +22,19 @@ CREATE TABLE public.status
     CONSTRAINT status_pk PRIMARY KEY (statusname)
 );
 
+CREATE SEQUENCE public.fahrerunterlagen_fahrerunterlage_id_seq;
+
 CREATE TABLE public.fahrerunterlagen
-(
-    typ_id integer,
+(	
+	
+    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
+    typ_id integer NOT NULL,
     status character(20) COLLATE pg_catalog."default",
     fahrer_pers_nr character(20) COLLATE pg_catalog."default",
     titel character(50) COLLATE pg_catalog."default",
     spreicherzeit timestamp without time zone,
     aenderungszeit timestamp without time zone,
     einreichungszeit timestamp without time zone,
-    fahrerunterlage_id serial NOT NULL,
     CONSTRAINT fahrerunterlage_pk PRIMARY KEY (fahrerunterlage_id),
     CONSTRAINT fahrerunterlagen_status FOREIGN KEY (status)
         REFERENCES public.status (statusname) MATCH SIMPLE
@@ -43,8 +46,29 @@ CREATE TABLE public.fahrerunterlagen
         ON DELETE NO ACTION
 );
 
+CREATE TABLE public.wagenlaufkarte
+(
+    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
+    wagen_nr integer,
+    betriebsstelle character(3) COLLATE pg_catalog."default",
+    datum date,
+    kurs_nr integer,
+    dienst_nr integer,
+    anfangszeit time without time zone,
+    anfangsort character(20) COLLATE pg_catalog."default",
+    endezeit time without time zone,
+    endeort character(20) COLLATE pg_catalog."default",
+    entwerter_nr integer,
+    fahrttyp character(20) COLLATE pg_catalog."default",
+    km_start integer,
+    km_ende integer,
+    bemerkung text COLLATE pg_catalog."default",
+    CONSTRAINT wagenlaufkarte_pkey PRIMARY KEY (fahrerunterlage_id)
+);
+
 CREATE TABLE public.fundzettel
 (
+	fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
     linie character varying(20) COLLATE pg_catalog."default",
     strecke character(20) COLLATE pg_catalog."default",
     fundort character(50) COLLATE pg_catalog."default",
@@ -63,7 +87,6 @@ CREATE TABLE public.fundzettel
     bemerkung character(100) COLLATE pg_catalog."default",
     sofortige_rueckgabe boolean,
     datum timestamp without time zone,
-    fahrerunterlage_id serial NOT NULL,
     spind_nr integer,
     CONSTRAINT fundzettel_pk PRIMARY KEY (fahrerunterlage_id)
 );
@@ -76,7 +99,7 @@ CREATE TABLE public.urlaubstyp
 
 CREATE TABLE public.urlaubsantrag
 (
-    fahrerunterlage_id serial NOT NULL,
+    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
     b character(20) COLLATE pg_catalog."default",
     gl character(20) COLLATE pg_catalog."default",
     schulpflicht boolean,
@@ -103,5 +126,3 @@ CREATE TABLE public.urlaubstag
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
-
-
