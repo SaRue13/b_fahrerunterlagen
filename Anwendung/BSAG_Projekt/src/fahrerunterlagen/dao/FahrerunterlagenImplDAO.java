@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 
 import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Unterlagentyp;
+import fahrerunterlagen.daten.Urlaubstag;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -57,6 +59,9 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		//
 		//configuration.addAnnotatedClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Fundzettel.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Urlaubsantrag.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Wagenlaufkarte.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Unterlagentyp.class);
 		//configuration.addClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		//
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
@@ -83,8 +88,10 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		    		    	    	
 	@Override
 	public List<Unterlagentyp> getUnterlagenTypen() {
-		// TODO Auto-generated method stub
-		return null;
+		@SuppressWarnings("unchecked")
+		List<Unterlagentyp> unterlagentypen = (List<Unterlagentyp>) getCurrentSession().createQuery("from Unterlagentyp").list();
+		return unterlagentypen;
+
 	}
 
 	@Override
@@ -139,7 +146,6 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 	public void unterlageLoeschen(Fahrerunterlage entity) {
 		getCurrentSession().delete(entity);		
 	}
-	
 	
 
 }

@@ -40,7 +40,7 @@ public class Urlaubstag {
 	@Override
 	public String toString() {
 		return "Urlaubstag [tag_id=" + tag_id + ", typ=" + typ + ", datum=" + datum + ", wichtigkeit=" + wichtigkeit
-				+ "]";
+				+", Basisdaten"+super.toString()+ "]";
 	}
 	
 

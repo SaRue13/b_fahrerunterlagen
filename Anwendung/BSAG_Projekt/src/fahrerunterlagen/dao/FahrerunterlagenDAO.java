@@ -12,4 +12,5 @@ public interface FahrerunterlagenDAO<T, Id extends Serializable> {
 	public List<T> findeFahrerUnterlagen(String fahrer, boolean eingereicht, int typ);
 	public void unterlageLoeschen(T entity);
 	
+	
 }

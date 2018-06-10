@@ -5,6 +5,8 @@ import java.util.List;
 
 import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Fundzettel;
+import fahrerunterlagen.daten.Urlaubsantrag;
+import fahrerunterlagen.daten.Wagenlaufkarte;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
 public class CRUDFahrerunterlage {
@@ -12,6 +14,37 @@ public class CRUDFahrerunterlage {
 	public static void main(String[] args) {
 		
 		FahrerunterlagenService fahrerunterlagenService = new FahrerunterlagenService();
+		
+		
+		/**
+		//Urlaubsantrag Speichern
+		
+		Urlaubsantrag u = new Urlaubsantrag();
+		u.setStatus("entwurf");
+		u.setP_nr_fahrer("P3245");
+		u.setTyp(2);
+		u.setB("b-test");
+		u.setSchulpflicht(true);
+		u.setUrlaubsanspruch(12);
+		
+		fahrerunterlagenService.unterlageSpeichern(u);
+		*/
+		
+		Wagenlaufkarte w = new Wagenlaufkarte();
+		w.setStatus("entwurf");
+		w.setP_nr_fahrer("P3245");
+		
+		fahrerunterlagenService.unterlageSpeichern(w);
+		
+		//Suche aller Fundzettel-Entwuerfe vom Fahrer P3245
+		System.out.println("*** Suche aller Fundzettel-Entwuerfe vom Fahrer P3245 - Start ***");
+		List<Fahrerunterlage> forms = fahrerunterlagenService.findeFahrerUnterlagen("P3245", false, 4);
+		System.out.println("Entwuerfe :");
+		for (Fahrerunterlage b : forms) {
+			System.out.println("-" + b.toString());
+		}
+		System.out.println("*** Suche - Ende ***");
+		/**		
 		
 		//Fahrerunterlage Speichern
 		
@@ -27,7 +60,7 @@ public class CRUDFahrerunterlage {
 		f.setStatus("entwurf");
 		
 		fahrerunterlagenService.unterlageSpeichern(f);
-		
+		/**
 		//Suche aller Fundzettel-Entwuerfe vom Fahrer P3245
 		System.out.println("*** Suche aller Fundzettel-Entwuerfe vom Fahrer P3245 - Start ***");
 		List<Fahrerunterlage> forms = fahrerunterlagenService.findeFahrerUnterlagen("P3245", false, 1);
@@ -53,7 +86,7 @@ public class CRUDFahrerunterlage {
 		    System.out.println("-" + b.toString());	
 		}
 		System.out.println("*** Suche - Ende ***");		
-
+		*/
 		System.exit(0);
 	
 	}
