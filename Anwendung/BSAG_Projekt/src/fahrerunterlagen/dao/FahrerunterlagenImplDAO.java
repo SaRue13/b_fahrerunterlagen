@@ -62,6 +62,7 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Urlaubsantrag.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Wagenlaufkarte.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Unterlagentyp.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verschmutzungsmeldung.class);
 		//configuration.addClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		//
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
@@ -145,6 +146,17 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 	@Override
 	public void unterlageLoeschen(Fahrerunterlage entity) {
 		getCurrentSession().delete(entity);		
+	}
+
+	@Override
+	public void urlaubstagSpeichern(Urlaubstag urlaubstag) {
+		getCurrentSession().save(urlaubstag);	
+	}
+
+	@Override
+	public List<Urlaubstag> getUrlaubstage(int urlaubsantrag_id) {
+		Criterion id = Restrictions.eq("status", "bearbeitet");
+		return null;
 	}
 	
 

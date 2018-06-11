@@ -16,8 +16,10 @@ public class FahrerunterlagenService {
 	}
 	
 	public List<Unterlagentyp> getUnterlagenTypen() {
-		// TODO Auto-generated method stub
-		return null;
+		fahrerunterlagenImplDAO.openCurrentSession();
+		List<Unterlagentyp> unterlagentypen = fahrerunterlagenImplDAO.getUnterlagenTypen();
+		fahrerunterlagenImplDAO.closeCurrentSession();
+		return unterlagentypen;
 	}
 
 	public void unterlageSpeichern(Fahrerunterlage entity) {

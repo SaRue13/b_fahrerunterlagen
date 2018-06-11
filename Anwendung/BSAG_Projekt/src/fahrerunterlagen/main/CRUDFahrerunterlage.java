@@ -5,7 +5,9 @@ import java.util.List;
 
 import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Fundzettel;
+import fahrerunterlagen.daten.Unterlagentyp;
 import fahrerunterlagen.daten.Urlaubsantrag;
+import fahrerunterlagen.daten.Verschmutzungsmeldung;
 import fahrerunterlagen.daten.Wagenlaufkarte;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
@@ -30,15 +32,34 @@ public class CRUDFahrerunterlage {
 		fahrerunterlagenService.unterlageSpeichern(u);
 		*/
 		
+		/**
+		// Wagenlaufkarte speichern
 		Wagenlaufkarte w = new Wagenlaufkarte();
 		w.setStatus("entwurf");
 		w.setP_nr_fahrer("P3245");
 		
 		fahrerunterlagenService.unterlageSpeichern(w);
+		*/
+		
+		// Verschmutzungsmeldung speichern
+		Verschmutzungsmeldung v = new Verschmutzungsmeldung();
+			v.setStatus("entwurf");
+			v.setP_nr_fahrer("P3245");
+			v.setReinigungskosten(50);
+			v.setReinigungskosten_bezahlt(true);
+			v.setVerunreinigungsart("Verschmutzung");
+		fahrerunterlagenService.unterlageSpeichern(v);
+		
+		//Unterlagentypen laden
+		List<Unterlagentyp> typen = fahrerunterlagenService.getUnterlagenTypen();
+		System.out.println("Unterlagentypen :");
+		for (Unterlagentyp b : typen) {
+			System.out.println("-" + b.toString());
+		}
 		
 		//Suche aller Fundzettel-Entwuerfe vom Fahrer P3245
 		System.out.println("*** Suche aller Fundzettel-Entwuerfe vom Fahrer P3245 - Start ***");
-		List<Fahrerunterlage> forms = fahrerunterlagenService.findeFahrerUnterlagen("P3245", false, 4);
+		List<Fahrerunterlage> forms = fahrerunterlagenService.findeFahrerUnterlagen("P3245", false, 3);
 		System.out.println("Entwuerfe :");
 		for (Fahrerunterlage b : forms) {
 			System.out.println("-" + b.toString());

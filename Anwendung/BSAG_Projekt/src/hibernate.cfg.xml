@@ -29,6 +29,7 @@
 		<mapping class="fahrerunterlagen.daten.Urlaubsantrag"></mapping>
 		<mapping class="fahrerunterlagen.daten.Wagenlaufkarte"></mapping>
 		<mapping class="fahrerunterlagen.daten.Unterlagentyp"></mapping>
+		<mapping class="fahrerunterlagen.daten.Verschmutzungsmeldung"></mapping>
 		
 	</session-factory>
 

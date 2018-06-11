@@ -31,5 +31,10 @@ public class Unterlagentyp {
 	public void setTypName(String name) {
 		this.typName = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Unterlagentyp [id=" + id + ", typName=" + typName + "]";
+	}
 	
 }
