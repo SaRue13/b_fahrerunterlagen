@@ -1,11 +1,13 @@
 --drop table fundzettel;
 --drop table wagenlaufkarte;
---drop table Urlaubstag;
+--drop table Verschmutzungsmeldung;
+--drop table urlaubstag;
 --drop table urlaubstyp;
 --drop table urlaubsantrag;
 --drop table fahrerunterlagen;
 --drop table unterlagentypen;
 --drop table status;
+--drop sequence public.fahrerunterlagen_fahrerunterlage_id_seq;
 
 CREATE TABLE public.unterlagentypen
 (
@@ -64,6 +66,29 @@ CREATE TABLE public.wagenlaufkarte
     km_ende integer,
     bemerkung text COLLATE pg_catalog."default",
     CONSTRAINT wagenlaufkarte_pkey PRIMARY KEY (fahrerunterlage_id)
+);
+
+CREATE TABLE public.verschmutzungsmeldung
+(
+    fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
+    datum date,
+    wagen_nr integer,
+    linie "char",
+    verunreinigt_ausgewechselt boolean,
+    verursacher_ermittelt boolean,
+    reinigungskosten integer,
+    reinigungskosten_bezahlt boolean,
+    verunreinigungsart "char",
+    verursachersname "char",
+    verursachersalter integer,
+    verursachersstrasse "char",
+    verursachersstadt_city "char",
+    gesetzlicher_vertreter "char",
+    pers_nr_b "char",
+    pers_nr_f "char",
+    dienststelle "char",
+    einzuzahlen integer,
+    CONSTRAINT verschmutzungsmeldung_pkey PRIMARY KEY (fahrerunterlage_id)
 );
 
 CREATE TABLE public.fundzettel
