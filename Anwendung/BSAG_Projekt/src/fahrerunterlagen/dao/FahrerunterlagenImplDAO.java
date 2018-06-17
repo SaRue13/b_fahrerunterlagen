@@ -63,6 +63,7 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Wagenlaufkarte.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Unterlagentyp.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verschmutzungsmeldung.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verspaetungsmeldung.class);
 		//configuration.addClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		//
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()

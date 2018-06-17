@@ -57,6 +57,12 @@ public class CRUDFahrerunterlage {
 			System.out.println("-" + b.toString());
 		}
 		
+		String[] typ = fahrerunterlagenService.getTypenNamen();
+		System.out.println("Typnamen :");
+		for (String b : typ) {
+			System.out.println("-" + b.toString());
+		}
+		
 		//Suche aller Fundzettel-Entwuerfe vom Fahrer P3245
 		System.out.println("*** Suche aller Fundzettel-Entwuerfe vom Fahrer P3245 - Start ***");
 		List<Fahrerunterlage> forms = fahrerunterlagenService.findeFahrerUnterlagen("P3245", false, 3);

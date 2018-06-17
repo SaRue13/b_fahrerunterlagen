@@ -12,12 +12,15 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import fahrerunterlagen.service.FahrerunterlagenService;
+
 @ManagedBean
 @SessionScoped
 public class MainBean {
-	
+
+	private FahrerunterlagenService fahrerunterlagenService;
 	private ArrayList<String> unterlagentypen;
-	private String[] typen = {"Urlaubsantrag", "Fundzettel", "Verschmutzungsmeldung", "Wagenlaufkarte", "Überstunden"};
+	private String[] typen;// = {"Urlaubsantrag", "Fundzettel", "Verschmutzungsmeldung", "Wagenlaufkarte", "Ueberstunden"};
 	private SelectItem[] linien;
 	private Date minDate;
 	private Date maxDate;
@@ -25,8 +28,10 @@ public class MainBean {
 	@PostConstruct
 	public void init() {
 		//Alle benötigten Werte laden: typen, linien
+		fahrerunterlagenService = new FahrerunterlagenService();
+		this.setTypen(fahrerunterlagenService.getTypenNamen());
 		unterlagentypen = new ArrayList<String>();
-		Collections.addAll(unterlagentypen, typen);
+		Collections.addAll(unterlagentypen, this.getTypen());
 		//System.out.println("Array: "+typen.length);
 		fillLinien();
 		Calendar cal = Calendar.getInstance();
