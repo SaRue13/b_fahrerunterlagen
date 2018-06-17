@@ -1,5 +1,6 @@
 package fahrerunterlagen.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,19 @@ public class FahrerunterlagenService {
 		List<Unterlagentyp> unterlagentypen = fahrerunterlagenImplDAO.getUnterlagenTypen();
 		fahrerunterlagenImplDAO.closeCurrentSession();
 		return unterlagentypen;
+	}
+	
+	public String[] getTypenNamen() {
+		
+		List<Unterlagentyp> unterlagentypen = this.getUnterlagenTypen(); 
+		String[] typen = new String[unterlagentypen.size()];
+		int i = 0;
+		for (Unterlagentyp typ : unterlagentypen) {
+			//typen.add(typ.getTypName());
+			typen[i] = typ.getTypName();
+			i++;
+		}
+		return typen;
 	}
 
 	public void unterlageSpeichern(Fahrerunterlage entity) {
