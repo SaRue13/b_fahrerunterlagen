@@ -5,3 +5,10 @@ Fundzettel(original) hat keine P-Nr. Ich ersetze Fahrer_name durch P-Nr.
 ParamLengthValidator: Parameter in internat. Fehlermeldung einsetzen, 1.111 >> 1111
 Mit convertNumber: alles long jetzt
 ParamRangeValidator: Neu, validiert auf Wertebereich, wie Length auch nur bei ButtonEinreichen
+17.06
+FundzettelForm und das fundzettel Objekt:
+-Erreichen des Forms entweder über NEU oder über einen gewählten Fundzettel
+-nach einreichen, Speichern, abbrechen wieder fundzettel = new machen
+Ansicht(Übersicht) wird geladen => ich brauche eine Liste gespeicherter Fundzettel und eine Eingereichter
+TODO Einreichen Block: wie geht neu einreichen?
+	Überschriften: H1 und H2 (Erstellen - Untertitel; Einreichungen - Untertitel)?
