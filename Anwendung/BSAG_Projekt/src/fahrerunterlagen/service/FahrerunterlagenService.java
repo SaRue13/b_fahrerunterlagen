@@ -30,7 +30,7 @@ public class FahrerunterlagenService {
 		int i = 0;
 		for (Unterlagentyp typ : unterlagentypen) {
 			//typen.add(typ.getTypName());
-			typen[i] = typ.getTypName();
+			typen[i] = typ.getTypName().trim();
 			i++;
 		}
 		return typen;
