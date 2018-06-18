@@ -229,6 +229,7 @@
 				action="#{fundzettelBean.einreichen}" update="@form">
 
 			</b:commandButton>
+			<b:commandButton immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{fundzettelBean.loeschen}" update="@form" />
 		</b:buttonGroup>
 		<!-- button rausgenommen: process="@form" update="@form" : update MUSS rein
 und im Bezug required="" muss ...[.clientId]-->

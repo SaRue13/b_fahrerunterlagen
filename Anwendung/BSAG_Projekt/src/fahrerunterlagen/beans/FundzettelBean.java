@@ -2,6 +2,7 @@ package fahrerunterlagen.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -9,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Fundzettel;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
@@ -24,8 +26,8 @@ import fahrerunterlagen.service.FahrerunterlagenService;
 public class FundzettelBean {
 
 	private Fundzettel fundzettel;
-	private ArrayList<Fundzettel> zettel; //gespeicherte fundzettel
-	private ArrayList<Fundzettel> zettel2; //Eingereichte fundzettel
+	private List<Fahrerunterlage> zettel; //gespeicherte fundzettel
+	private List<Fahrerunterlage> zettel2; //Eingereichte fundzettel
 	private FahrerunterlagenService fahrerunterlagenService;
 	private String test = "Test";
 	
@@ -38,7 +40,10 @@ public class FundzettelBean {
 		loadZettel2();
 	}
 	private void loadZettel() {
-		Fundzettel f = new Fundzettel();
+		//FahrerunterlagenService methode aufrufen: pnr, 
+		//DAzu ManagedProperty von UserHandler, von dem P-Nr holen
+		zettel = fahrerunterlagenService.findeFahrerUnterlagen("p1234", false, 1);
+		/*Fundzettel f = new Fundzettel();
 		f.setTitel("Titel");
 		f.setFundort("Sitzgruppe x");
 		Fundzettel f1 = new Fundzettel();
@@ -51,40 +56,41 @@ public class FundzettelBean {
 		zettel.add(f);
 		zettel.add(f1);
 		zettel.add(f2);
-		zettel.add(f3);
+		zettel.add(f3);*/
 		System.out.println("LoadZettel: "+zettel.size());
 	}
 	private void loadZettel2() {
-		Fundzettel f = new Fundzettel();
-		f.setTitel("Einreichung Fundzettel 1");
+	/*	Fundzettel f = new Fundzettel();
+		f.setTitel("Fundzettel 1");
 		f.setStatus("nicht_bearbeitet");
 		Fundzettel f1 = new Fundzettel();
-		f1.setTitel("Einreichung Fundzettel 11");
+		f1.setTitel("Fundzettel 11");
 		f1.setStatus("bearbeitet");
 		Fundzettel f2 = new Fundzettel();
-		f2.setTitel("Einreichung Fundzettel 12");
+		f2.setTitel("Fundzettel 12");
 		Fundzettel f3 = new Fundzettel();
-		f3.setTitel("Einreichung Fundzettel 13");
+		f3.setTitel("Fundzettel 13");
 		Fundzettel f4 = new Fundzettel();
-		f4.setTitel("Einreichung Fundzettel 14");
-		zettel2 = new ArrayList<Fundzettel>();
+		f4.setTitel("Fundzettel 14");
+		zettel2 = new List<Fahrerunterlage>();
 		zettel2.add(f);
 		zettel2.add(f1);
 		zettel2.add(f2);
 		zettel2.add(f3);
-		zettel2.add(f4);
+		zettel2.add(f4);*/
+		zettel2 = fahrerunterlagenService.findeFahrerUnterlagen("p1234", true, 1);
 	}
 	
-	public ArrayList<Fundzettel> getZettel2() {
+	public List<Fahrerunterlage> getZettel2() {
 		return zettel2;
 	}
-	public void setZettel2(ArrayList<Fundzettel> zettel2) {
+	public void setZettel2(List<Fahrerunterlage> zettel2) {
 		this.zettel2 = zettel2;
 	}
-	public ArrayList<Fundzettel> getZettel() {
+	public List<Fahrerunterlage> getZettel() {
 		return zettel;
 	}
-	public void setZettel(ArrayList<Fundzettel> zettel) {
+	public void setZettel(List<Fahrerunterlage> zettel) {
 		this.zettel = zettel;
 	}
 	public String getTest() {
@@ -132,6 +138,7 @@ public String neu() {
 		//fundzettel = new Fundzettel(); //nicht nötig: NEU bzw Wahl setzt fundzettel
 //		clearDatum();
 //		clearVonFahrgast();
+		loadZettel();
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
@@ -152,7 +159,8 @@ public String neu() {
 		 * clearDatum();
 		clearVonFahrgast();*/
 		//fundzettel = new Fundzettel();
-		return "fahrerunterlagen_ansicht_Fundzettel.xhtml";
+		loadZettel2();
+		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
 	public String neuEinreichen() {
@@ -181,6 +189,12 @@ public String neu() {
 		fundzettel.setHausnummer(null);
 		fundzettel.setPlz(0);
 		fundzettel.setWohnort(null);
+	}
+	
+	public String loeschen() {
+		fahrerunterlagenService.unterlageLoeschen(fundzettel);
+		loadZettel();
+		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	/*public void speicherListener(ActionEvent event) {
 		String status = (String)event.getComponent().getAttributes().get("status");

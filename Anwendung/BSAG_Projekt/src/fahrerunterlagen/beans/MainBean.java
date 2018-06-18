@@ -100,6 +100,7 @@ public class MainBean {
 	}
 
 	private void fillLinien() {
+		//Werte der Linien laden (1, 2, 6E ...)
 		linien = new SelectItem[5];
 		for(int i = 0; i< 5; i++) {
 			linien[i] = new SelectItem(i+1, "Linie "+(i+1));//wert, label
