@@ -85,6 +85,9 @@ public class MainBean {
 	}
 
 	public void setTypen(String[] typen) {
+		for(String typ: typen) {
+			System.out.println(" typ: "+typ);
+		}
 		this.typen = typen;
 	}
 
