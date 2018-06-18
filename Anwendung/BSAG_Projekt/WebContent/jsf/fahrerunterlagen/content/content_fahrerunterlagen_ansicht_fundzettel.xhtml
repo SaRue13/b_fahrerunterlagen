@@ -17,15 +17,15 @@
 	
 	<b:row>
 		<ui:repeat value="#{fundzettelBean.zettel}" var="fz" >
-			<b:column col-md="3" col-xs="6" style="border:1px solid #D3D3D3;" >
-				<b:commandButton id="fundButtonDetails" value="#{fz.titel}"
+			<b:column class="fuSquares" col-md="3" col-xs="6" style="border:1px solid #D3D3D3;" >
+				<b:commandButton class="fuSquareButton" id="fundButtonDetails" value="#{fz.titel}"
 				action="#{fundzettelBean.details}" >
 					<f:setPropertyActionListener target="#{fundzettelBean.fundzettel}" value="#{fz}" />
 				</b:commandButton>
 			</b:column>
 		</ui:repeat>
-		<b:column col-md="3" col-xs="6" style="border:1px solid #D3D3D3;" >
-			<b:commandButton value="NEU" action="#{fundzettelBean.neu}" />
+		<b:column class="fuSquares" col-md="3" col-xs="6" style="border:1px solid #D3D3D3;" >
+			<b:commandButton class="fuSquareButton" value="NEU" action="#{fundzettelBean.neu}" />
 			</b:column>
 	</b:row>
 	</b:form>
