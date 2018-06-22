@@ -1,5 +1,7 @@
 --delete * from status
 --delete * from unterlagentypen
+--delete * from linie
+
 
 insert into status (statusname) values ('bearbeitet'), 
 ('entwurf'), 
@@ -13,3 +15,5 @@ insert into unterlagentypen values ('1', 'Fundzettel', 'fundzettel'),
 ('5', 'Verspaetungsmeldung', 'verspaetungsmeldung');
 
 INSERT INTO urlaubstyp VALUES ('X'), ('F'), ('Z'), ('U'), ('B');
+
+INSERT INTO linie VALUES ('1'), ('2'), ('3'), ('4'), ('6'), ('8'), ('10'), ('4S'), ('6E'), ('1E');

@@ -1,3 +1,4 @@
+--drop table linie;
 --drop table fundzettel;
 --drop table wagenlaufkarte;
 --drop table verschmutzungsmeldung;
@@ -9,6 +10,11 @@
 --drop table unterlagentypen;
 --drop table status;
 --drop sequence public.fahrerunterlagen_fahrerunterlage_id_seq;
+
+CREATE TABLE public.linie
+(
+    bezeichnung character varying(2) COLLATE pg_catalog."default" NOT NULL
+);
 
 CREATE TABLE public.unterlagentypen
 (

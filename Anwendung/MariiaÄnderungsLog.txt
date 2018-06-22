@@ -1,0 +1,8 @@
+22.06.18.
+
+1. SQL Skript angepasst: 
+	- alle character(n) mit varchar(n) ersetzt wurden, um den Fehler mit den Leerzeichen zu beheben;
+	- Skript fürs Erstellen der Tabelle "Linie"
+	- Skript für Testdaten für Tabelle "Linie"
+2. Funktion fürs Laden der Linien aus DB implementiert
+	

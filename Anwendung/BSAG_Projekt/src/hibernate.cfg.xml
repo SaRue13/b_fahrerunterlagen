@@ -30,6 +30,8 @@
 		<mapping class="fahrerunterlagen.daten.Wagenlaufkarte"></mapping>
 		<mapping class="fahrerunterlagen.daten.Unterlagentyp"></mapping>
 		<mapping class="fahrerunterlagen.daten.Verschmutzungsmeldung"></mapping>
+		<mapping class="fahrerunterlagen.daten.Verspaetungsmeldung"></mapping>
+		<mapping class="fahrerunterlagen.daten.Linie"></mapping>
 		
 	</session-factory>
 

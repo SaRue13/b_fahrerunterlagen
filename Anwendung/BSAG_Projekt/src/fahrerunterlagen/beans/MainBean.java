@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -117,9 +118,12 @@ public class MainBean {
 
 	private void fillLinien() {
 		//Werte der Linien laden (1, 2, 6E ...)
-		linien = new SelectItem[5];
-		for(int i = 0; i< 5; i++) {
-			linien[i] = new SelectItem(i+1, "Linie "+(i+1));//wert, label
+		List<String> linienbezeichnung = fahrerunterlagenService.getLinienBezeichnung();
+		linien = new SelectItem[linienbezeichnung.size()];
+		int i=0;
+		for(String linie : linienbezeichnung) {
+			linien[i] = new SelectItem(linie, "Linie "+ linie);//wert, label
+			i++;
 		}
 	}
 	

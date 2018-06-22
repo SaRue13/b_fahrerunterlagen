@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import fahrerunterlagen.daten.Fahrerunterlage;
+import fahrerunterlagen.daten.Linie;
 import fahrerunterlagen.daten.Unterlagentyp;
 import fahrerunterlagen.daten.Urlaubstag;
 
@@ -64,6 +65,7 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Unterlagentyp.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verschmutzungsmeldung.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verspaetungsmeldung.class);
+		configuration.addAnnotatedClass(fahrerunterlagen.daten.Linie.class);
 		//configuration.addClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		//
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
@@ -93,7 +95,12 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		@SuppressWarnings("unchecked")
 		List<Unterlagentyp> unterlagentypen = (List<Unterlagentyp>) getCurrentSession().createQuery("from Unterlagentyp").list();
 		return unterlagentypen;
-
+	}
+	
+	public List<Linie> getLinien() {
+		@SuppressWarnings("unchecked")
+		List<Linie> linien = getCurrentSession().createQuery("from Linie").list();
+		return linien;	
 	}
 
 	@Override

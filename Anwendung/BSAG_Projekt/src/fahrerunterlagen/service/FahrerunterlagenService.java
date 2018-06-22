@@ -7,6 +7,7 @@ import java.util.List;
 import fahrerunterlagen.dao.FahrerunterlagenImplDAO;
 import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Fundzettel;
+import fahrerunterlagen.daten.Linie;
 import fahrerunterlagen.daten.Unterlagentyp;
 
 public class FahrerunterlagenService {
@@ -34,6 +35,17 @@ public class FahrerunterlagenService {
 			i++;
 		}
 		return typen;
+	}
+	
+	public List<String> getLinienBezeichnung() {
+		fahrerunterlagenImplDAO.openCurrentSession();
+		List<Linie> linien = fahrerunterlagenImplDAO.getLinien();
+		fahrerunterlagenImplDAO.closeCurrentSession();
+		ArrayList<String> linie_bezeichnung = new ArrayList<String>(); 
+		for (Linie linie : linien) {
+			linie_bezeichnung.add(linie.getBezeichnung());
+		}
+		return linie_bezeichnung;
 	}
 
 	public void unterlageSpeichern(Fahrerunterlage entity) {
