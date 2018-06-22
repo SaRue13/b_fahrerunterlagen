@@ -196,6 +196,12 @@ public String neu() {
 		loadZettel();
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
+	
+	public String loeschen2() {
+		fahrerunterlagenService.unterlageLoeschen(fundzettel);
+		loadZettel2();
+		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
+	}
 	/*public void speicherListener(ActionEvent event) {
 		String status = (String)event.getComponent().getAttributes().get("status");
 		System.out.println("Status: "+status);

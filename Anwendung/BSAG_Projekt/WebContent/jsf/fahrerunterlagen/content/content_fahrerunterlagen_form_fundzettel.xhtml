@@ -23,7 +23,7 @@
 	<b:panelGrid colSpans="3,5,4">
 
 		<h:outputLabel value="#{txt.fuFormularTitel}" for="fundzettelTitel" />
-		<b:inputText id="fundzettelTitel"
+		<b:inputText id="fundzettelTitel" 
 			value="#{fundzettelBean.fundzettel.titel}" required="#{not empty param[fundButtonSpeichern.clientId] or not empty param[fundButtonEinreichen.clientId]}">
 			<f:validateLength minimum="3" maximum="20" />
 		</b:inputText>
@@ -58,7 +58,7 @@
 
 		<h:outputLabel value="#{txt.fuFundzettelWagennr}"
 			for="fundzettelWagennr" />
-		<b:inputText id="fundzettelWagennr"
+		<b:inputText id="fundzettelWagennr" 
 			value="#{fundzettelBean.fundzettel.wagenNr}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}" >
 			<f:convertNumber pattern="0000" ></f:convertNumber>

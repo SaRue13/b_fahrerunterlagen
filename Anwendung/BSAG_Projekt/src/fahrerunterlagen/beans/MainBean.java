@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import beans.UserHandler;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
 @ManagedBean
@@ -24,6 +25,9 @@ public class MainBean {
 	private SelectItem[] linien;
 	private Date minDate;
 	private Date maxDate;
+	
+	@ManagedProperty("#{userHandler}")
+	private UserHandler userHandler;
 	
 	@PostConstruct
 	public void init() {
@@ -42,6 +46,18 @@ public class MainBean {
 
 	
 	
+	public UserHandler getUserHandler() {
+		return userHandler;
+	}
+
+
+
+	public void setUserHandler(UserHandler userHandler) {
+		this.userHandler = userHandler;
+	}
+
+
+
 	public Date getMinDate() {
 		System.out.println("get MinDAte");
 		return minDate;

@@ -11,20 +11,20 @@
 	<b:column col-md="4" offset-md="4">
 		<b:form horizontal="true">
 			<b:inputText placeholder="P123456" label="P-Nummer:" colMd="9"
-				labelColMd="3">
+				labelColMd="3" value="#{userHandler.pers_nr}">
 				<f:facet name="prepend">
 					<b:icon name="user" />
 				</f:facet>
 			</b:inputText>
 
 			<b:inputText placeholder="Passwort" label="Passwort:" colMd="9"
-				labelColMd="3">
+				labelColMd="3" value="#{userHandler.passwort}">
 				<f:facet name="prepend">
 					<b:iconAwesome name="key" />
 				</f:facet>
 			</b:inputText>
 			<b:commandButton col-md="6" offset-md="6" update="@form"
-				value="Login" />
+				value="Login" action="#{userHandler.login()}"/>
 		</b:form>
 
 	</b:column>
