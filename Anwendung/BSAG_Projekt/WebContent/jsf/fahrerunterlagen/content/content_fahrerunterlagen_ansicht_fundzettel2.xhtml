@@ -18,7 +18,7 @@
 	
 	<b:row>
 		<ui:repeat value="#{fundzettelBean.zettel2}" var="fz" >
-			<b:column class="fuSquares" col-md="3" col-xs="6" style="border:1px solid #D3D3D3;" >
+			<b:column class="fuSquares" col-md="3" col-xs="6" >
 				<b:commandButton class="fuSquareButton" id="fundButtonDetails" value="#{fz.titel}"
 				action="#{fundzettelBean.details2}" >
 					<f:setPropertyActionListener target="#{fundzettelBean.fundzettel}" value="#{fz}" />

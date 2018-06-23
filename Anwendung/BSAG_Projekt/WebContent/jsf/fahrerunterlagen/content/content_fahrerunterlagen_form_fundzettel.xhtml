@@ -23,7 +23,7 @@
 	<b:panelGrid colSpans="3,5,4">
 
 		<h:outputLabel value="#{txt.fuFormularTitel}" for="fundzettelTitel" />
-		<b:inputText id="fundzettelTitel" 
+		<b:inputText id="fundzettelTitel" placeholder="#{txt.fuFormularTitel}"
 			value="#{fundzettelBean.fundzettel.titel}" required="#{not empty param[fundButtonSpeichern.clientId] or not empty param[fundButtonEinreichen.clientId]}">
 			<f:validateLength minimum="3" maximum="20" />
 		</b:inputText>
@@ -40,7 +40,7 @@
 
 		<h:outputLabel value="#{txt.fuFundzettelStrecke}"
 			for="fundzettelStrecke" />
-		<b:inputText id="fundzettelStrecke"
+		<b:inputText id="fundzettelStrecke" placeholder="#{txt.fuFundzettelStrecke}"
 			value="#{fundzettelBean.fundzettel.strecke}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 			<f:validateLength minimum="3" maximum="20" />
@@ -49,7 +49,7 @@
 
 		<h:outputLabel value="#{txt.fuFundzettelFundort}"
 			for="fundzettelFundort" />
-		<b:inputText id="fundzettelFundort"
+		<b:inputText id="fundzettelFundort" placeholder="#{txt.fuFundzettelFundort}"
 			value="#{fundzettelBean.fundzettel.fundort}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 			<f:validateLength minimum="3" maximum="20" />
@@ -71,22 +71,22 @@
 
 		<h:outputLabel value="#{txt.fuFundzettelDatumZeit}"
 			for="fundzettelDatumZeit" />
-		<b:dateTimePicker id="fundzettelDatumZeit"
+		<b:dateTimePicker id="fundzettelDatumZeit" placeholder="#{txt.fuDatumZeitPlatzhalter}"
 			value="#{fundzettelBean.fundzettel.datumZeit}" side-by-side="true"
-			format="#{txt.fuDatumZeitFormat}"
+			format="#{txt.fuDatumZeitFormat}" 
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 		</b:dateTimePicker>
 		<b:message for="fundzettelDatumZeit" />
 
 		<h:outputLabel value="#{txt.fuFundzettelFundsache}"
 			for="fundzettelFundsache" />
-		<b:inputText id="fundzettelFundsache"
+		<b:inputText id="fundzettelFundsache" placeholder="#{txt.fuFundzettelFundsache}"
 			value="#{fundzettelBean.fundzettel.fundsache}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}" />
 		<b:message for="fundzettelFundsache" />
 
 		<h:outputLabel value="#{txt.fuFundzettelPnr}" for="fundzettelPnr" />
-		<b:inputText id="fundzettelPnr"
+		<b:inputText id="fundzettelPnr" placeholder="#{txt.fuFundzettelPnr}"
 			value="#{fundzettelBean.fundzettel.p_nr_fahrer}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 			<f:validator validatorId="PNrValidator" />
@@ -94,7 +94,7 @@
 		<b:message for="fundzettelPnr" />
 
 		<h:outputLabel value="#{txt.fuFundzettelStamm}" for="fundzettelStamm" />
-		<b:inputText id="fundzettelStamm"
+		<b:inputText id="fundzettelStamm" placeholder="#{txt.fuFundzettelStamm}"
 			value="#{fundzettelBean.fundzettel.stammNr}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 			<f:validator validatorId="PNrValidator" />
@@ -102,7 +102,7 @@
 		<b:message for="fundzettelStamm" />
 
 		<h:outputLabel value="#{txt.fuFundzettelB}" for="fundzettelB" />
-		<b:inputText id="fundzettelB" value="#{fundzettelBean.fundzettel.b}"
+		<b:inputText id="fundzettelB" placeholder="#{txt.fuFundzettelB}" value="#{fundzettelBean.fundzettel.b}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
 			<f:validator validatorId="BValidator" />
 		</b:inputText>
@@ -135,7 +135,7 @@
 		
 		<h:outputLabel value="#{txt.fuFundzettelBemerkung}"
 			for="fundzettelBemerkung" />
-		<b:inputText id="fundzettelBemerkung"
+		<b:inputText id="fundzettelBemerkung" placeholder="#{txt.fuFundzettelBemerkung}"
 			value="#{fundzettelBean.fundzettel.bemerkung}" />
 		<b:message for="fundzettelBemerkung" />
 		
@@ -167,7 +167,7 @@
 
 		<h:outputLabel value="#{txt.fuFundzettelNameFinder}"
 			for="fundzettelNameFinder" />
-		<b:inputText id="fundzettelNameFinder"
+		<b:inputText id="fundzettelNameFinder" placeholder="#{txt.fuFundzettelNameFinder}"
 			value="#{fundzettelBean.fundzettel.nameFinder}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
 		<b:message for="fundzettelNameFinder" />
 
@@ -176,10 +176,10 @@
 		<b:column id="fundzettelStrasseNr">
 			<b:row>
 				<b:column col-md="8" col-xs="12">
-					<b:inputText id="fundzettelStr" value="#{fundzettelBean.fundzettel.strasse}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
+					<b:inputText id="fundzettelStr" placeholder="#{txt.fuStrassePlatzhalter}" value="#{fundzettelBean.fundzettel.strasse}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
 				</b:column>
 				<b:column col-md="4" col-xs="6">
-					<b:inputText id="fundzettelHnr" value="#{fundzettelBean.fundzettel.hausnummer}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
+					<b:inputText id="fundzettelHnr" placeholder="#{txt.fuHausnrPlatzhalter}" value="#{fundzettelBean.fundzettel.hausnummer}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
 				</b:column>
 			</b:row>
 		</b:column>
@@ -203,7 +203,7 @@
 					</b:inputText>
 				</b:column>
 				<b:column col-md="8" col-xs="12">
-					<b:inputText id="fundzettelOrt" value="#{fundzettelBean.fundzettel.wohnort}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
+					<b:inputText id="fundzettelOrt" placeholder="#{txt.fuOrtPlatzhalter}" value="#{fundzettelBean.fundzettel.wohnort}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" />
 				</b:column>
 			</b:row>
 		</b:column>
@@ -223,13 +223,13 @@
 				action="#{fundzettelBean.speichern}" update="@form">
 
 			</b:commandButton>
-			<b:commandButton value="#{txt.fuButtonAbbrechen}" action="#{fundzettelBean.abbrechen}" />
+			<b:commandButton immediate="true" value="#{txt.fuButtonAbbrechen}" action="#{fundzettelBean.abbrechen}" />
 			<b:commandButton id="fundButtonEinreichen"
 				binding="#{fundButtonEinreichen}" value="#{txt.fuButtonEinreichen}"
 				action="#{fundzettelBean.einreichen}" update="@form">
 
 			</b:commandButton>
-			<b:commandButton immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{fundzettelBean.loeschen}" update="@form" />
+			<b:commandButton rendered="fundzettelBean.fundzettel.titel != null" immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{fundzettelBean.loeschen}" update="@form" />
 		</b:buttonGroup>
 		<!-- button rausgenommen: process="@form" update="@form" : update MUSS rein
 und im Bezug required="" muss ...[.clientId]-->
