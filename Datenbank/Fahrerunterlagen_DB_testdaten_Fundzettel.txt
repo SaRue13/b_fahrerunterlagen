@@ -1,15 +1,22 @@
---delete * from fundzettel
---delete * from fahrerunterlagen
+--delete from fundzettel;
+--delete from fahrerunterlagen;
 
 INSERT INTO public.fundzettel(
 	fahrerunterlage_id, linie, fundort, wg_nr, fundsache, vom_fahrgast_gefunden, ueber_fuenfzig_euro,  finder_name, strasse, hausnr, plz, wohnort, wert, sofortige_rueckgabe, datum, spind_nr)
 	VALUES (100001, '6E', 'Sitzplatz', '2314', 'Regenschirm', true, false, 'Meier, Imke', 'Blumenstr.', '1', '28213', 'Bremen',10, false, current_timestamp, 10),
 	(100002, '1', 'Neben der ersten Tuer', '4136', 'Portmonee', false, true, NULL, NULL, NULL, '0', NULL, 245, false, current_timestamp, 2),
 	(100003, '3', 'Sitzplatz', '5481', 'Handy', true, true, 'Schmidt, Heiko','Blumenstr.', '1', '25834', 'Oldenburg',500, false, current_timestamp, 8),
-	(100004, '1', 'Boden', '4136', 'Brille', false, false, NULL, NULL, NULL, '0', NULL, 30, true, current_timestamp, 3);
+	(100004, '1', 'Boden', '4136', 'Brille', false, false, NULL, NULL, NULL, '0', NULL, 30, true, current_timestamp, 3),
+	(100005, '8', 'Hinterer Wagen Sitzgruppe X', '6574', 'Turnschuh', true, false, 'Heidenbaum, Ingo','Seitengasse', '1c', '13987', 'Bummelsloh',17, false, current_timestamp, 34),
+	(100006, '1E', 'Auf Fahrkartenautomat', '1135', 'Monokel', false, true, 'Abgdal, Iggi','Hintermhause', '123', '25634', 'Ottensooß',750, false, current_timestamp, 23),
+	(100007, '4', 'Neben erster Tür', '9100', 'Goldnugget', false, true, 'NULL','NULL', 'NULL', '0', 'NULL',1500, true, current_timestamp, 8);
+
 INSERT INTO public.fahrerunterlagen(
 	fahrerunterlage_id, typ_id, status, fahrer_pers_nr, titel, spreicherzeit, aenderungszeit)
-	VALUES (100001, 1,  'entwurf', 'p000001','Fundzettel_1', current_timestamp, current_timestamp),
-	(100002, 1,  'entwurf', 'p000001','Fundzettel_2', current_timestamp, current_timestamp),
-	(100003, 1,  'entwurf', 'p000001','Fundzettel_3', current_timestamp, current_timestamp),
-	(100004, 1,  'entwurf', 'p000001','Fundzettel_4', current_timestamp, current_timestamp);	
+	VALUES (100001, 1,  'entwurf', 'p000003','Schirm', current_timestamp, current_timestamp),
+	(100002, 1,  'entwurf', 'p000003','Portmonee', current_timestamp, current_timestamp),
+	(100003, 1,  'entwurf', 'p000003','Handy', current_timestamp, current_timestamp),
+	(100004, 1,  'entwurf', 'p000003','Brille', current_timestamp, current_timestamp),
+	(100005, 1,  'nicht_bearbeitet', 'p000003','Schuh', current_timestamp, current_timestamp),
+	(100006, 1,  'in_bearbeitung', 'p000003','Monokel', current_timestamp, current_timestamp),
+	(100007, 1,  'nicht_bearbeitet', 'p000003','Goldnugget', current_timestamp, current_timestamp);	
