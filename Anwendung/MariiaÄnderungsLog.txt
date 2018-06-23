@@ -5,4 +5,8 @@
 	- Skript fürs Erstellen der Tabelle "Linie"
 	- Skript für Testdaten für Tabelle "Linie"
 2. Funktion fürs Laden der Linien aus DB implementiert
+
+23.06.18.
+
+SQL Skript zum Erstellen von Test-Fundzetteln 
 	
