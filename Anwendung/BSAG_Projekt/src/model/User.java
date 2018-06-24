@@ -85,5 +85,18 @@ public class User {
 		
 		roles.add(role);
 	}
+	
+	private boolean userHasRole(int role) {
+		boolean is = false;
+		for(int r: roles) {
+			if(r == role)
+				is= true;
+		}
+		return is;
+	}
+	
+	public boolean isGruppenleiter() {
+		return userHasRole(User.GRUPPENLEITER);
+	}
 
 }

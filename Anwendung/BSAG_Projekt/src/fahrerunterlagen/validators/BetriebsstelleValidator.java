@@ -20,6 +20,7 @@ public class BetriebsstelleValidator implements Validator{
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object obj) throws ValidatorException {
 		String pnr = (String)obj;
+		System.out.println("BValidator");
 		if(!pnr.matches(regex)) {
 			String mb = context.getApplication().getMessageBundle();
 			ResourceBundle rb = ResourceBundle.getBundle(mb);

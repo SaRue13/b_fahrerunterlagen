@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -30,6 +31,8 @@ public class FundzettelBean {
 	private List<Fahrerunterlage> zettel2; //Eingereichte fundzettel
 	private FahrerunterlagenService fahrerunterlagenService;
 	private String test = "Test";
+	@ManagedProperty("#{mainBean}")
+	private MainBean mainBean;
 	
 	@PostConstruct
 	public void init() {
@@ -38,11 +41,13 @@ public class FundzettelBean {
 		fahrerunterlagenService = new FahrerunterlagenService();
 		loadZettel();
 		loadZettel2();
+		System.out.println(mainBean.getUserHandler().getPers_nr());
+		fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
 	}
 	private void loadZettel() {
 		//FahrerunterlagenService methode aufrufen: pnr, 
 		//DAzu ManagedProperty von UserHandler, von dem P-Nr holen
-		zettel = fahrerunterlagenService.findeFahrerUnterlagen("p1234", false, 1);
+		zettel = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), false, 1);
 		/*Fundzettel f = new Fundzettel();
 		f.setTitel("Titel");
 		f.setFundort("Sitzgruppe x");
@@ -78,9 +83,15 @@ public class FundzettelBean {
 		zettel2.add(f2);
 		zettel2.add(f3);
 		zettel2.add(f4);*/
-		zettel2 = fahrerunterlagenService.findeFahrerUnterlagen("p1234", true, 1);
+		zettel2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 1);
 	}
 	
+	public MainBean getMainBean() {
+		return mainBean;
+	}
+	public void setMainBean(MainBean mainBean) {
+		this.mainBean = mainBean;
+	}
 	public List<Fahrerunterlage> getZettel2() {
 		return zettel2;
 	}
@@ -111,19 +122,20 @@ public class FundzettelBean {
 public String details() {
 		
 		System.out.println("Details: "+fundzettel.toString());
-		return "fahrerunterlagen_form_Fundzettel.xhtml";
+		return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
 	}
 
 public String details2() {
 	
 	System.out.println("Details der Einreichungen: "+fundzettel.toString());
-	return "fahrerunterlagen_form_Fundzettel2.xhtml";
+	return "fahrerunterlagen_form_Fundzettel2.xhtml?faces-redirect=true";
 }
 
 public String neu() {
 	fundzettel = new Fundzettel();
+	fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
 	System.out.println("fundzBean, Neu :"+fundzettel.toString());
-	return "fahrerunterlagen_form_Fundzettel.xhtml";
+	return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
 }
 	
 	public String speichern() {
@@ -165,31 +177,20 @@ public String neu() {
 	
 	public String neuEinreichen() {
 		System.out.println("fundzBean: NeuEinreichen, TODO");
-		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml";
+		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
 	public String abbrechen() {
 		System.out.println("fundzBean Abbrechen");
-		return "fahrerunterlagen_ansicht_Fundzettel.xhtml";
+		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
 	public String abbrechen2() {
 		System.out.println("fundzBean Abbrechen2");
-		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml";
+		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
-	private void clearDatum() {
-		fundzettel.setAenderung_datum(null);
-		fundzettel.setSpeicher_datum(null);
-		fundzettel.setEinreichung_datum(null);
-	}
-	private void clearVonFahrgast() {
-		fundzettel.setNameFinder(null);
-		fundzettel.setStrasse(null);
-		fundzettel.setHausnummer(null);
-		fundzettel.setPlz(0);
-		fundzettel.setWohnort(null);
-	}
+
 	
 	public String loeschen() {
 		fahrerunterlagenService.unterlageLoeschen(fundzettel);

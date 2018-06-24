@@ -64,7 +64,7 @@
 			<f:convertNumber pattern="0000" ></f:convertNumber>
 			<f:validator validatorId="notZero" />
 			<f:validator validatorId="paramLength" />
-				<f:attribute name="min" value="4" />
+				<f:attribute name="min" value="1" />
 				<f:attribute name="max" value="4" />
 		</b:inputText>
 		<b:message for="fundzettelWagennr" />
@@ -129,7 +129,7 @@
 			<f:validator validatorId="notZero" />
 			<f:validator validatorId="paramRange" />
 				<f:attribute name="min" value="2" />
-				<f:attribute name="max" value="2000" />
+				<f:attribute name="max" value="5000" />
 		</b:inputText>
 		<b:message for="fundzettelWert" />
 		
@@ -229,7 +229,7 @@
 				action="#{fundzettelBean.einreichen}" update="@form">
 
 			</b:commandButton>
-			<b:commandButton rendered="fundzettelBean.fundzettel.titel != null" immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{fundzettelBean.loeschen}" update="@form" />
+			<b:commandButton rendered="#{not empty fundzettelBean.fundzettel.titel}" immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{fundzettelBean.loeschen}" update="@form" />
 		</b:buttonGroup>
 		<!-- button rausgenommen: process="@form" update="@form" : update MUSS rein
 und im Bezug required="" muss ...[.clientId]-->

@@ -16,7 +16,7 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator(value = "PNrValidator")
 public class PersonalnummerValidator implements Validator{
 
-	private String regex="(p|P)\\d{5}";
+	private String regex="(p|P)\\d{6}";
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object obj) throws ValidatorException {
 		String pnr = (String)obj;

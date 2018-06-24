@@ -58,6 +58,7 @@ public class ParamRangeValidator implements Validator{
 		 */
 		
 		if(input < min || input > max) {
+			System.out.println("praramRange: Wert passt nicht: "+input);
 			/*String message = rb.getString("fuMINValidation");
 			String messageDetail = rb.getString("fuMINValidation_detail");
 			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, message, messageDetail));*/

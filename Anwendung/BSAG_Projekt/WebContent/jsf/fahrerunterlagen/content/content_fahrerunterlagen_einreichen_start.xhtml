@@ -16,11 +16,31 @@
 		</b:row>
 		<b:row>
 			<b:column colSpan="12" border="1px" fluid="true" >
-				<!-- b:thumbnail class="fu_thumbnail">
-					<h:outputText value="Text für Startseite" class="fu_unterlagen_beschreibung" />
-				 </b:thumbnail-->
+				<h5><h:outputText id="fuEinreichenStartseiteText" value="#{txt.fuStartTextEinreichen}" /></h5>
 			</b:column>
 			
+		</b:row>
+		<b:row>
+			<b:column col-md="6" col-xs="12" >
+			<h4>#{txt.fuStartUnterlageEinsehenHeader}</h4>
+				<p><h:outputText value="#{txt.fuStartUnterlageEinsehen}" /></p>
+			</b:column>
+			<b:column col-md="6" col-xs="12" >
+			<h4>#{txt.fuStartUnterlageLoeschenHeader}</h4>
+				<p><h:outputText value="#{txt.fuStartUnterlageLoeschen}" /></p>
+			</b:column>
+			<b:column></b:column>
+		</b:row>
+		<b:row>
+			<b:column col-md="6" col-xs="12" >
+				<h4>#{txt.fuStartUnterlageNeuHeader}</h4>
+				<p><h:outputText value="#{txt.fuStartUnterlageNeu}" /></p>
+			</b:column>
+			<b:column col-md="6" col-xs="12" >
+			<h4>#{txt.fuStartEinreichungFixHeader}</h4>
+				<p><h:outputText value="#{txt.fuStartEinreichungFix}" /></p>
+			</b:column>
+			<b:column></b:column>
 		</b:row>
 		
 	</b:column>

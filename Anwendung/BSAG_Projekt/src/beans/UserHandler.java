@@ -18,6 +18,7 @@ public class UserHandler {
 	private List<User> users;
 	private String pers_nr;
 	private String passwort;
+	private boolean gruppenleiter;
 
 	public UserHandler() {
 		super();
@@ -170,5 +171,8 @@ public class UserHandler {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 
+	
 }
