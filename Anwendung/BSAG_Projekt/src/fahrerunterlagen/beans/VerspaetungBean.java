@@ -115,7 +115,7 @@ public class VerspaetungBean {
 	public String neu() {
 		verspmeldung = new Verspaetungsmeldung();
 		verspmeldung.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
-		return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
+		return "fahrerunterlagen_form_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	public String einreichen() {
 		
