@@ -1,4 +1,4 @@
---delete from fundzettel;
+﻿--delete from fundzettel;
 --delete from fahrerunterlagen;
 
 INSERT INTO public.fundzettel(
@@ -20,9 +20,9 @@ INSERT INTO public.fahrerunterlagen(
 INSERT INTO public.fundzettel(
 	fahrerunterlage_id, linie, strecke, fundort, wg_nr, fundsache, vom_fahrgast_gefunden, ueber_fuenfzig_euro, stamm_nr, b, finder_name, strasse, hausnr, plz, wohnort, wert, bemerkung, sofortige_rueckgabe, datum, spind_nr)
 	VALUES 
-	(100005, '8', 'HBF-DMH', 'Hinterer Wagen Sitzgruppe X', '6574', 'Turnschuh', true, false, 'p12345', 'B23', 'Heidenbaum, Ingo','Seitengasse', '1c', '13987', 'Bummelsloh',17, 'blaue Farbe', false, current_timestamp, 34),
-	(100006, '1E', 'HBF-HTN','Auf Fahrkartenautomat', '1135', 'Monokel', false, true, 'p12345', 'B51', 'Abgdal, Iggi','Hintermhause', '123', '25634', 'Ottensooß',750, 'Scheibe ist kaputt', false, current_timestamp, 23),
-	(100007, '4', 'BGF-HBF','Neben erster Tür', '9100', 'Goldnugget', false, true, 'p12345', 'B26', 'NULL','NULL', 'NULL', '0', 'NULL',1500, 'Ca. 1 Kg', true, current_timestamp, 8);
+	(100005, '8', 'HBF-DMH', 'Hinterer Wagen Sitzgruppe X', '6574', 'Turnschuh', true, false, 'p162345', 'B23', 'Heidenbaum, Ingo','Seitengasse', '1c', '13987', 'Bummelsloh',17, 'blaue Farbe', false, current_timestamp, 34),
+	(100006, '1E', 'HBF-HTN','Auf Fahrkartenautomat', '1135', 'Monokel', false, true, 'p123845', 'B51', 'Abgdal, Iggi','Hintermhause', '123', '25634', 'Ottensooß',750, 'Scheibe ist kaputt', false, current_timestamp, 23),
+	(100007, '4', 'BGF-HBF','Neben erster Tür', '9100', 'Goldnugget', false, true, 'p120345', 'B26', 'NULL','NULL', 'NULL', '0', 'NULL',1500, 'Ca. 1 Kg', true, current_timestamp, 8);
 
 
 INSERT INTO public.fahrerunterlagen(

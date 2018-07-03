@@ -15,19 +15,27 @@
 	<ui:composition
 		template="../layout_fahrerunterlagen/template_fahrerunterlagen.xhtml">
 		
+		<!-- ui:define name="event">
+			<f:event listener="#{userHandler.checkLoggedIn}" type="preRenderView" />
+		</ui:define> -->
+		
 		<ui:define name="header">	
-			Fahrerunterlagen - Vorlagen
+			#{txt.FuHeaderErstellenStart}
 		</ui:define>
 
 		<ui:define name="sidebar_fahrerunterlagen">
 
-			<ui:include src="../sidebar/sidebar_fahrerunterlagen_vorlagen.xhtml" />
+			<ui:include src="../sidebar/sidebar_fahrerunterlagen.xhtml" />
 		</ui:define>
 
 		<ui:define name="content_fahrerunterlagen">
-			<ui:include src="../content/content_fahrerunterlagen_vorlagen.xhtml" />
+			<b:form id="verspaetungForm">
+			<ui:include src="../content/content_fahrerunterlagen_form_verspaetungsmeldung.xhtml" />
+			<!--ui:include src="../content/fahrerunterlagen_form_buttons_erstellen.xhtml" /-->
+			</b:form>
 		</ui:define>
 
 	</ui:composition>
 </h:body>
 </html>
+

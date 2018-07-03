@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+<b:column>
+	<b:row>
+		<h3>#{txt.FuHeaderVerspaetungAnsicht}</h3>
+		
+		</b:row>
+	<b:form>
+	
+	<b:row>
+		<ui:repeat value="#{verspaetungBean.meldungen}" var="meld" >
+			<b:column class="fuSquares" col-md="3" col-xs="6" >
+				<b:commandButton class="fuSquareButton" id="verspaetButtonDetails" value="#{meld.titel}"
+				action="#{verspaetungBean.details}" >
+					<f:setPropertyActionListener target="#{verspaetungBean.verspmeldung}" value="#{meld}" />
+				</b:commandButton>
+			</b:column>
+		</ui:repeat>
+		<b:column class="fuSquares" col-md="3" col-xs="6" >
+			<b:commandButton class="fuSquareButton" value="NEU" action="#{verspaetungBean.neu}" />
+			</b:column>
+	</b:row>
+	</b:form>
+
+	
+
+</b:column>
+</html>

@@ -50,6 +50,17 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Column(name="verspaetung_bis_angeordnet")
 	private LocalTime verspaetung_bis_angeordnet;
 	
+	private String verspaetung;
+	private String verspaetung_angeordnet;
+	
+	public String getVerspaetung() {
+		return verspaetung;
+	}
+
+	public void setVerspaetung(String verspaetung) {
+		this.verspaetung = verspaetung;
+	}
+
 	@Column(name="verspaetung_st_angeordnet")
 	private int verspaetung_st_angeordnet;
 	
@@ -70,6 +81,14 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 
 	public void setDatum(Date datum) {
 		this.datum = datum;
+	}
+
+	public String getVerspaetung_angeordnet() {
+		return verspaetung_angeordnet;
+	}
+
+	public void setVerspaetung_angeordnet(String verspaetung_angeordnet) {
+		this.verspaetung_angeordnet = verspaetung_angeordnet;
 	}
 
 	public int getDienst_nr() {

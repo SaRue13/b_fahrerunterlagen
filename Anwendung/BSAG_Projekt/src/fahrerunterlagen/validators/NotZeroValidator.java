@@ -22,10 +22,11 @@ public class NotZeroValidator implements Validator{
                 context.getExternalContext().getRequestParameterMap();
 	  String buttonEinreichen = params.get("fundzettelForm:fundButtonEinreichen");//fundzettelForm:fundButtonSpeichern
 		//System.out.println("NotZERO: "+buttonEinreichen);
+	  String buttonEinreichenV = params.get("verspaetungForm:fundButtonEinreichen");
 		
 		//Auf länge 4 Testen!
 		
-		if(buttonEinreichen != null && input == 0) {
+		if((buttonEinreichen != null || buttonEinreichenV != null) && input == 0) {
 			String mb = context.getApplication().getMessageBundle();
 			ResourceBundle rb = ResourceBundle.getBundle(mb);
 			String message = rb.getString("fuZERO");

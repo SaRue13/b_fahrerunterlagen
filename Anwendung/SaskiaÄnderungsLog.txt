@@ -12,3 +12,8 @@ FundzettelForm und das fundzettel Objekt:
 Ansicht(Übersicht) wird geladen => ich brauche eine Liste gespeicherter Fundzettel und eine Eingereichter
 TODO Einreichen Block: wie geht neu einreichen?
 	Überschriften: H1 und H2 (Erstellen - Untertitel; Einreichungen - Untertitel)?
+
+(...)
+03.07.
+Verspaetungsmeldung:
+-nur für Erstellen/Bearbeiten: Übersichtsansicht und Eingabeformular
