@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Verspaetungsmeldung;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
@@ -18,8 +20,8 @@ public class VerspaetungBean {
 	//Liste 2 geladener VerspMeld (eingereichte)
 	
 	private Verspaetungsmeldung verspmeldung;
-	private List<Verspaetungsmeldung> meldungen; //gespeicherte fundzettel
-	private List<Verspaetungsmeldung> meldungen2; //Eingereichte fundzettel
+	private List<Fahrerunterlage> meldungen; //gespeicherte Verspaetungsmeldungen
+	private List<Fahrerunterlage> meldungen2; //Eingereichte Verspaetungsmeldungen
 	private FahrerunterlagenService fahrerunterlagenService;
 	@ManagedProperty("#{mainBean}")
 	private MainBean mainBean;
@@ -46,22 +48,22 @@ public class VerspaetungBean {
 	}
 
 
-	public List<Verspaetungsmeldung> getMeldungen() {
+	public List<Fahrerunterlage> getMeldungen() {
 		return meldungen;
 	}
 
 
-	public void setMeldungen(List<Verspaetungsmeldung> meldungen) {
+	public void setMeldungen(List<Fahrerunterlage> meldungen) {
 		this.meldungen = meldungen;
 	}
 
 
-	public List<Verspaetungsmeldung> getMeldungen2() {
+	public List<Fahrerunterlage> getMeldungen2() {
 		return meldungen2;
 	}
 
 
-	public void setMeldungen2(List<Verspaetungsmeldung> meldungen2) {
+	public void setMeldungen2(List<Fahrerunterlage> meldungen2) {
 		this.meldungen2 = meldungen2;
 	}
 
@@ -77,31 +79,11 @@ public class VerspaetungBean {
 
 
 	private void ladeMeldungen(){
-		Verspaetungsmeldung v = new Verspaetungsmeldung();
-		v.setTitel("Zu spät");
-		v.setAngeordnet_durch("Herbert Hasenbär");
-		Verspaetungsmeldung v1 = new Verspaetungsmeldung();
-		v1.setTitel("Noch später");
-		v1.setDienst_nr(1234);
-		Verspaetungsmeldung v2 = new Verspaetungsmeldung();
-		v2.setTitel("Niemals");
-		v2.setDiensttauschkonto(true);
+		meldungen = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), false, 5);
 	}
 	
 	private void ladeMeldungen2(){
-		Verspaetungsmeldung v = new Verspaetungsmeldung();
-		v.setTitel("Zu spät");
-		v.setAngeordnet_durch("Herbert Hasenbär");
-		Verspaetungsmeldung v1 = new Verspaetungsmeldung();
-		v1.setTitel("Noch später");
-		v1.setDienst_nr(1234);
-		Verspaetungsmeldung v2 = new Verspaetungsmeldung();
-		v2.setTitel("Niemals");
-		v2.setDiensttauschkonto(true);
-		meldungen = new ArrayList<Verspaetungsmeldung>();
-		meldungen.add(v2);
-		meldungen.add(v1);
-		meldungen.add(v);
+		meldungen2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 5);	
 	}
 	
 	public String details() {
@@ -118,12 +100,26 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_form_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	public String einreichen() {
-		
+		System.out.println("Fundzettel, Einreichen: "+verspmeldung.toString());
+		verspmeldung.setStatus("nicht_bearbeitet");
+		if (verspmeldung.getAenderung_datum()==null) {
+			System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
+			fahrerunterlagenService.unterlageSpeichern(verspmeldung);
+		}
+		else if (verspmeldung.getAenderung_datum() != null) {
+			fahrerunterlagenService.unterlageBearbeiten(verspmeldung);
+		}
+		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
 	public String speichern() {
-	
+		
+		System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
+		verspmeldung.setStatus("entwurf");
+		fahrerunterlagenService.unterlageSpeichern(verspmeldung);
+		ladeMeldungen();
+		
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		
@@ -134,7 +130,9 @@ public class VerspaetungBean {
 	
 	
 	public String loeschen() {
-		
+		fahrerunterlagenService.unterlageLoeschen(verspmeldung);
+		ladeMeldungen();
+		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		

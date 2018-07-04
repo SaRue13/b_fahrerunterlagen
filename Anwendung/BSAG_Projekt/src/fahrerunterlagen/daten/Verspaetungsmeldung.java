@@ -26,12 +26,6 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Column(name="verspaetungs_bis")
 	private LocalTime verspaetungs_bis;
 	
-	@Column(name="verspaetung_st")
-	private int verspaetung_st;
-	
-	@Column(name="verspaetung_min")
-	private int verspaetung_min;
-	
 	@Column(name="soll_ist_vergleich")
 	private boolean soll_ist_vergleich;
 	
@@ -50,22 +44,14 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Column(name="verspaetung_bis_angeordnet")
 	private LocalTime verspaetung_bis_angeordnet;
 	
+	@Column(name="verspaetung")
 	private String verspaetung;
+	
+
+
+	@Column(name="verspaetung_angeordnet")
 	private String verspaetung_angeordnet;
 	
-	public String getVerspaetung() {
-		return verspaetung;
-	}
-
-	public void setVerspaetung(String verspaetung) {
-		this.verspaetung = verspaetung;
-	}
-
-	@Column(name="verspaetung_st_angeordnet")
-	private int verspaetung_st_angeordnet;
-	
-	@Column(name="verspaetung_min_angeordnet")
-	private int verspaetung_min_angeordnet;
 	
 	@Column(name="angeordnet_durch")
 	private String angeordnet_durch;
@@ -73,6 +59,14 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	public Verspaetungsmeldung() {
 		super();
 		this.setTyp(5);
+	}
+
+	public String getVerspaetung() {
+		return verspaetung;
+	}
+
+	public void setVerspaetung(String verspaetung) {
+		this.verspaetung = verspaetung;
 	}
 
 	public Date getDatum() {
@@ -115,21 +109,6 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 		this.verspaetungs_bis = verspaetungs_bis;
 	}
 
-	public int getVerspaetung_st() {
-		return verspaetung_st;
-	}
-
-	public void setVerspaetung_st(int verspaetung_st) {
-		this.verspaetung_st = verspaetung_st;
-	}
-
-	public int getVerspaetung_min() {
-		return verspaetung_min;
-	}
-
-	public void setVerspaetung_min(int verspaetung_min) {
-		this.verspaetung_min = verspaetung_min;
-	}
 
 	public boolean isSoll_ist_vergleich() {
 		return soll_ist_vergleich;
@@ -179,22 +158,7 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 		this.verspaetung_bis_angeordnet = verspaetung_bis_angeordnet;
 	}
 
-	public int getVerspaetung_st_angeordnet() {
-		return verspaetung_st_angeordnet;
-	}
-
-	public void setVerspaetung_st_angeordnet(int verspaetung_st_angeordnet) {
-		this.verspaetung_st_angeordnet = verspaetung_st_angeordnet;
-	}
-
-	public int getVerspaetung_min_angeordnet() {
-		return verspaetung_min_angeordnet;
-	}
-
-	public void setVerspaetung_min_angeordnet(int verspaetung_min_angeordnet) {
-		this.verspaetung_min_angeordnet = verspaetung_min_angeordnet;
-	}
-
+	
 	public String getAngeordnet_durch() {
 		return angeordnet_durch;
 	}
@@ -206,13 +170,11 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Override
 	public String toString() {
 		return "Verspaetungsmeldung [datum=" + datum + ", dienst_nr=" + dienst_nr + ", schlusszeit_der_dienst_nr="
-				+ schlusszeit_der_dienst_nr + ", verspaetungs_bis=" + verspaetungs_bis + ", verspaetung_st="
-				+ verspaetung_st + ", verspaetung_min=" + verspaetung_min + ", soll_ist_vergleich=" + soll_ist_vergleich
+				+ schlusszeit_der_dienst_nr + ", verspaetungs_bis=" + verspaetungs_bis + ", verspaetung=" + verspaetung + ", soll_ist_vergleich=" + soll_ist_vergleich
 				+ ", diensttauschkonto=" + diensttauschkonto + ", begruendung=" + begruendung + ", dienstnr_angeordnet="
 				+ dienstnr_angeordnet + ", schlusszeit_der_dienstnr_andeordnet=" + schlusszeit_der_dienstnr_andeordnet
-				+ ", verspaetung_bis_angeordnet=" + verspaetung_bis_angeordnet + ", verspaetung_st_angeordnet="
-				+ verspaetung_st_angeordnet + ", verspaetung_min_angeordnet=" + verspaetung_min_angeordnet
-				+ ", angeordnet_durch=" + angeordnet_durch +", Basisdaten"+super.toString()+ "]";
+				+ ", verspaetung_bis_angeordnet=" + verspaetung_bis_angeordnet + ", verspaetung_angeordnet="
+				+ verspaetung_angeordnet + ", angeordnet_durch=" + angeordnet_durch +", Basisdaten"+super.toString()+ "]";
 	}
 
 }

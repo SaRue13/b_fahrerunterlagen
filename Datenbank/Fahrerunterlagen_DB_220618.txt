@@ -98,6 +98,7 @@ CREATE TABLE public.verschmutzungsmeldung
     CONSTRAINT verschmutzungsmeldung_pkey PRIMARY KEY (fahrerunterlage_id)
 );
 
+
 CREATE TABLE public.verspaetungsmeldung
 (
     fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
@@ -105,17 +106,15 @@ CREATE TABLE public.verspaetungsmeldung
     dienst_nr integer,
     schlusszeit_der_dienst_nr varchar(20) COLLATE pg_catalog."default",
     verspaetungs_bis time without time zone,
-    verspaetung_st integer,
-    verspaetung_min integer,
+    verspaetung varchar(20) COLLATE pg_catalog."default",
     soll_ist_vergleich boolean,
     diensttauschkonto boolean,
-    begruendung varchar(20) COLLATE pg_catalog."default",
+    begruendung varchar(100) COLLATE pg_catalog."default",
     dienstnr_angeordnet integer,
     schlusszeit_der_dienstnr_andeordnet varchar(20) COLLATE pg_catalog."default",
     verspaetung_bis_angeordnet time without time zone,
-    verspaetung_st_angeordnet integer,
-    verspaetung_min_angeordnet integer,
-    angeordnet_durch varchar(20) COLLATE pg_catalog."default",
+    verspaetung_angeordnet varchar(20) COLLATE pg_catalog."default",
+    angeordnet_durch varchar(50) COLLATE pg_catalog."default",
     CONSTRAINT verspaetungsmeldung_pkey PRIMARY KEY (fahrerunterlage_id)
 );
 

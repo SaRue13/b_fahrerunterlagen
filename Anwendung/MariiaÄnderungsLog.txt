@@ -1,4 +1,4 @@
-22.06.18.
+22.06.18
 
 1. SQL Skript angepasst: 
 	- alle character(n) mit varchar(n) ersetzt wurden, um den Fehler mit den Leerzeichen zu beheben;
@@ -6,7 +6,13 @@
 	- Skript für Testdaten für Tabelle "Linie"
 2. Funktion fürs Laden der Linien aus DB implementiert
 
-23.06.18.
+23.06.18
 
 SQL Skript zum Erstellen von Test-Fundzetteln 
 	
+04.07.18
+
+- Test Daten für Verspaetungsmeldung
+- DB Skript angepasst
+- daten/Verspaetungsmeldung.java
+- beans/VerspaetungBean: Speichern, Einreichen, Löschen, Laden. 
