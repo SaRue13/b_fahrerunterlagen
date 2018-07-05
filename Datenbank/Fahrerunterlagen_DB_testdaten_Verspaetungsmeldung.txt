@@ -11,10 +11,10 @@ INSERT INTO public.verspaetungsmeldung(
 
 INSERT INTO public.fahrerunterlagen(
 	fahrerunterlage_id, typ_id, status, fahrer_pers_nr, titel, spreicherzeit, aenderungszeit)
-	VALUES (200001, 1,  'entwurf', 'p000003','Spaeter', current_timestamp, current_timestamp),
-	(200002, 5,  'entwurf', 'p000003','Zu spaet', current_timestamp, current_timestamp),
-	(200003, 5,  'entwurf', 'p000003','Noch spaeter', current_timestamp, current_timestamp),
-	(200004, 5,  'entwurf', 'p000003','Niemals', current_timestamp, current_timestamp);	
+	VALUES (200001, 1,  'entwurf', 'p0003','Spaeter', current_timestamp, current_timestamp),
+	(200002, 5,  'entwurf', 'p0003','Zu spaet', current_timestamp, current_timestamp),
+	(200003, 5,  'entwurf', 'p0003','Noch spaeter', current_timestamp, current_timestamp),
+	(200004, 5,  'entwurf', 'p0003','Niemals', current_timestamp, current_timestamp);	
 
 
 INSERT INTO public.verspaetungsmeldung(
@@ -25,6 +25,6 @@ INSERT INTO public.verspaetungsmeldung(
 
 INSERT INTO public.fahrerunterlagen(
 	fahrerunterlage_id, typ_id, status, fahrer_pers_nr, titel, aenderungszeit, einreichungszeit)
-	VALUES (200005, 1,  'nicht_bearbeitet', 'p000003','Verspaetet', current_timestamp, current_timestamp),
-	(200006, 1,  'in_bearbeitung', 'p000003','Verschlafen', current_timestamp, current_timestamp),
-	(200007, 1,  'nicht_bearbeitet', 'p000003','Vergessen', current_timestamp, current_timestamp);	
+	VALUES (200005, 1,  'nicht_bearbeitet', 'p0003','Verspaetet', current_timestamp, current_timestamp),
+	(200006, 1,  'in_bearbeitung', 'p0003','Verschlafen', current_timestamp, current_timestamp),
+	(200007, 1,  'nicht_bearbeitet', 'p0003','Vergessen', current_timestamp, current_timestamp);	

@@ -14,16 +14,18 @@ import javax.persistence.Table;
 @SecondaryTable(name = "fahrerunterlagen", pkJoinColumns = @PrimaryKeyJoinColumn(name ="fahrerunterlage_id"))
 public class Verspaetungsmeldung extends Fahrerunterlage {
 	
+	private boolean anordnung; //neu machen bitte =)
+	
 	@Column(name="datum")
 	private Date datum;
 	
 	@Column(name="dienst_nr")
 	private int dienst_nr;
 	
-	@Column(name="schlusszeit_der_dienst_nr")
+	@Column(name="schlusszeit_der_dienst_nr") //als Date
 	private String schlusszeit_der_dienst_nr;
 	
-	@Column(name="verspaetungs_bis")
+	@Column(name="verspaetungs_bis") //als Date
 	private LocalTime verspaetungs_bis;
 	
 	@Column(name="soll_ist_vergleich")
@@ -35,27 +37,36 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Column(name="begruendung")
 	private String begruendung;
 	
-	@Column(name="dienstnr_angeordnet")
+	@Column(name="dienstnr_angeordnet") //entfällt
 	private int dienstnr_angeordnet;
 	
-	@Column(name="schlusszeit_der_dienstnr_andeordnet")
+	@Column(name="schlusszeit_der_dienstnr_andeordnet") //entfällt
 	private String schlusszeit_der_dienstnr_andeordnet;
 	
-	@Column(name="verspaetung_bis_angeordnet")
+	@Column(name="verspaetung_bis_angeordnet") //entfällt
 	private LocalTime verspaetung_bis_angeordnet;
 	
-	@Column(name="verspaetung")
+	@Column(name="verspaetung") 
 	private String verspaetung;
 	
 
 
-	@Column(name="verspaetung_angeordnet")
+	@Column(name="verspaetung_angeordnet") //entfällt
 	private String verspaetung_angeordnet;
 	
 	
 	@Column(name="angeordnet_durch")
 	private String angeordnet_durch;
 	
+	
+	public boolean isAnordnung() {
+		return anordnung;
+	}
+
+	public void setAnordnung(boolean anordnung) {
+		this.anordnung = anordnung;
+	}
+
 	public Verspaetungsmeldung() {
 		super();
 		this.setTyp(5);
