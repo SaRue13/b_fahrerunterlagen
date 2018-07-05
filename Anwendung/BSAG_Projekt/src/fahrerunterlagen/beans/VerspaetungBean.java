@@ -109,6 +109,7 @@ public class VerspaetungBean {
 		else if (verspmeldung.getAenderung_datum() != null) {
 			fahrerunterlagenService.unterlageBearbeiten(verspmeldung);
 		}
+		ladeMeldungen(); 
 		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
@@ -116,10 +117,15 @@ public class VerspaetungBean {
 	public String speichern() {
 		
 		System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
-		verspmeldung.setStatus("entwurf");
-		fahrerunterlagenService.unterlageSpeichern(verspmeldung);
+		if (verspmeldung.getFahrerunterlage_id()==0) {
+			verspmeldung.setStatus("entwurf");
+			fahrerunterlagenService.unterlageSpeichern(verspmeldung);
+		}
+		else {
+			fahrerunterlagenService.unterlageBearbeiten(verspmeldung);
+		}
 		ladeMeldungen();
-		
+		verspmeldung.toString();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		

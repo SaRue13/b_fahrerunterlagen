@@ -104,17 +104,14 @@ CREATE TABLE public.verspaetungsmeldung
     fahrerunterlage_id integer NOT NULL DEFAULT nextval('fahrerunterlagen_fahrerunterlage_id_seq'::regclass),
     datum date,
     dienst_nr integer,
-    schlusszeit_der_dienst_nr varchar(20) COLLATE pg_catalog."default",
-    verspaetungs_bis time without time zone,
-    verspaetung varchar(20) COLLATE pg_catalog."default",
+    schlusszeit_der_dienst_nr date,
+    verspaetungs_bis date,
+    verspaetung varchar(10) COLLATE pg_catalog."default",
     soll_ist_vergleich boolean,
     diensttauschkonto boolean,
-    begruendung varchar(100) COLLATE pg_catalog."default",
-    dienstnr_angeordnet integer,
-    schlusszeit_der_dienstnr_andeordnet varchar(20) COLLATE pg_catalog."default",
-    verspaetung_bis_angeordnet time without time zone,
-    verspaetung_angeordnet varchar(20) COLLATE pg_catalog."default",
-    angeordnet_durch varchar(50) COLLATE pg_catalog."default",
+    begruendung varchar(50) COLLATE pg_catalog."default",
+    Anordnung boolean,
+    angeordnet_durch varchar(30) COLLATE pg_catalog."default",
     CONSTRAINT verspaetungsmeldung_pkey PRIMARY KEY (fahrerunterlage_id)
 );
 

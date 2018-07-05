@@ -3,11 +3,11 @@
 
 
 INSERT INTO public.verspaetungsmeldung(
-	fahrerunterlage_id, datum, dienst_nr, schlusszeit_der_dienst_nr, verspaetungs_bis, soll_ist_vergleich, diensttauschkonto, begruendung, dienstnr_angeordnet, schlusszeit_der_dienstnr_andeordnet, verspaetung_bis_angeordnet, angeordnet_durch, verspaetung, verspaetung_angeordnet)
-	VALUES (200001, current_timestamp, '1234', '17:15', '12:35', true, true, 'Reifenwechsel', '0', '', NULL, '', '10 Min', ''),
-	(200002, current_timestamp, '0', '', NULL, false, true, 'im Aufzug stecken geblieben', '1235', '21:15', '17:30', 'Homer Simpson', '', '45 Min'),
-	(200003, current_timestamp, '0', '', NULL, false, true, 'Strassenbahnverspaetung', '1235', '21:15', '13:33', 'Homer Simpson', '', '23 Min'),
-	(200004, current_timestamp, '1234', '17:15', '12:35', true, true, 'Benzin ist ausgelaufen', '0', '', NULL, '', '2 Min', '');
+	fahrerunterlage_id, datum, dienst_nr, schlusszeit_der_dienst_nr, verspaetungs_bis, soll_ist_vergleich, diensttauschkonto, begruendung, angeordnet_durch, verspaetung, anordnung)
+	VALUES (200001, current_timestamp, '1234', current_timestamp, current_timestamp, true, false, 'Reifenwechsel', '', '10 Min', false),
+	(200002, current_timestamp, '1234', current_timestamp, current_timestamp, true, false, 'im Aufzug stecken geblieben', 'Homer Simpson', '15 Min', true),
+	(200003, current_timestamp, '1234', current_timestamp, current_timestamp, true, false, 'Strassenbahnverspaetung', 'Homer Simpson', '23 Min', true),
+	(200004, current_timestamp, '1234', current_timestamp, current_timestamp, false, true, 'Benzin ist ausgelaufen', '', '2 Min', false);
 
 INSERT INTO public.fahrerunterlagen(
 	fahrerunterlage_id, typ_id, status, fahrer_pers_nr, titel, spreicherzeit, aenderungszeit)
@@ -18,10 +18,11 @@ INSERT INTO public.fahrerunterlagen(
 
 
 INSERT INTO public.verspaetungsmeldung(
-	fahrerunterlage_id, datum, dienst_nr, schlusszeit_der_dienst_nr, verspaetungs_bis, soll_ist_vergleich, diensttauschkonto, begruendung, dienstnr_angeordnet, schlusszeit_der_dienstnr_andeordnet, verspaetung_bis_angeordnet, angeordnet_durch, verspaetung, verspaetung_angeordnet)
-	VALUES (200005, current_timestamp, '1234', '17:15', '12:35', true, true, 'Ich habe mich verlaufen', '0', '', NULL, '', '10 Min', ''),
-	(200006, current_timestamp, '0', '', NULL, false, true, 'Verschlafen', '1235', '21:15', '17:30', 'Homer Simpson', '', '45 Min'),
-	(200007, current_timestamp, '0', '', NULL, false, true, 'Vergessen dass ich arbeite', '1235', '21:15', '13:33', 'Homer Simpson', '', '23 Min');
+	fahrerunterlage_id, datum, dienst_nr, schlusszeit_der_dienst_nr, verspaetungs_bis, soll_ist_vergleich, diensttauschkonto, begruendung, angeordnet_durch, verspaetung, anordnung)
+	VALUES	(200005, current_timestamp, '1234', current_timestamp, current_timestamp, true, false, 'Ich habe mich verlaufen', 'Homer Simpson', '15 Min', true),
+	(200006, current_timestamp, '1234', current_timestamp, current_timestamp, true, false, 'Verschlafen', 'Homer Simpson', '23 Min', true),
+	(200007, current_timestamp, '1234', current_timestamp, current_timestamp, false, true, 'Vergessen dass ich arbeite', '', '2 Min', false);
+
 
 INSERT INTO public.fahrerunterlagen(
 	fahrerunterlage_id, typ_id, status, fahrer_pers_nr, titel, aenderungszeit, einreichungszeit)

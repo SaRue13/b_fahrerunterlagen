@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @SecondaryTable(name = "fahrerunterlagen", pkJoinColumns = @PrimaryKeyJoinColumn(name ="fahrerunterlage_id"))
 public class Verspaetungsmeldung extends Fahrerunterlage {
 	
+	@Column(name="anordnung")
 	private boolean anordnung; //neu machen bitte =)
 	
 	@Column(name="datum")
@@ -23,10 +24,10 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	private int dienst_nr;
 	
 	@Column(name="schlusszeit_der_dienst_nr") //als Date
-	private String schlusszeit_der_dienst_nr;
+	private Date schlusszeit_der_dienst_nr;
 	
 	@Column(name="verspaetungs_bis") //als Date
-	private LocalTime verspaetungs_bis;
+	private Date verspaetungs_bis;
 	
 	@Column(name="soll_ist_vergleich")
 	private boolean soll_ist_vergleich;
@@ -37,22 +38,22 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	@Column(name="begruendung")
 	private String begruendung;
 	
-	@Column(name="dienstnr_angeordnet") //entfällt
-	private int dienstnr_angeordnet;
+	//@Column(name="dienstnr_angeordnet") //entfällt
+	//private int dienstnr_angeordnet;
 	
-	@Column(name="schlusszeit_der_dienstnr_andeordnet") //entfällt
-	private String schlusszeit_der_dienstnr_andeordnet;
+	//@Column(name="schlusszeit_der_dienstnr_andeordnet") //entfällt
+	//private String schlusszeit_der_dienstnr_andeordnet;
 	
-	@Column(name="verspaetung_bis_angeordnet") //entfällt
-	private LocalTime verspaetung_bis_angeordnet;
+	//@Column(name="verspaetung_bis_angeordnet") //entfällt
+	//private LocalTime verspaetung_bis_angeordnet;
 	
 	@Column(name="verspaetung") 
 	private String verspaetung;
 	
 
 
-	@Column(name="verspaetung_angeordnet") //entfällt
-	private String verspaetung_angeordnet;
+	//@Column(name="verspaetung_angeordnet") //entfällt
+	//private String verspaetung_angeordnet;
 	
 	
 	@Column(name="angeordnet_durch")
@@ -88,14 +89,6 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 		this.datum = datum;
 	}
 
-	public String getVerspaetung_angeordnet() {
-		return verspaetung_angeordnet;
-	}
-
-	public void setVerspaetung_angeordnet(String verspaetung_angeordnet) {
-		this.verspaetung_angeordnet = verspaetung_angeordnet;
-	}
-
 	public int getDienst_nr() {
 		return dienst_nr;
 	}
@@ -104,19 +97,19 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 		this.dienst_nr = dienst_nr;
 	}
 
-	public String getSchlusszeit_der_dienst_nr() {
+	public Date getSchlusszeit_der_dienst_nr() {
 		return schlusszeit_der_dienst_nr;
 	}
 
-	public void setSchlusszeit_der_dienst_nr(String schlusszeit_der_dienst_nr) {
+	public void setSchlusszeit_der_dienst_nr(Date schlusszeit_der_dienst_nr) {
 		this.schlusszeit_der_dienst_nr = schlusszeit_der_dienst_nr;
 	}
 
-	public LocalTime getVerspaetungs_bis() {
+	public Date getVerspaetungs_bis() {
 		return verspaetungs_bis;
 	}
 
-	public void setVerspaetungs_bis(LocalTime verspaetungs_bis) {
+	public void setVerspaetungs_bis(Date verspaetungs_bis) {
 		this.verspaetungs_bis = verspaetungs_bis;
 	}
 
@@ -144,6 +137,14 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	public void setBegruendung(String begruendung) {
 		this.begruendung = begruendung;
 	}
+/**
+	public String getVerspaetung_angeordnet() {
+		return verspaetung_angeordnet;
+	}
+
+	public void setVerspaetung_angeordnet(String verspaetung_angeordnet) {
+		this.verspaetung_angeordnet = verspaetung_angeordnet;
+	}
 
 	public int getDienstnr_angeordnet() {
 		return dienstnr_angeordnet;
@@ -168,7 +169,7 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	public void setVerspaetung_bis_angeordnet(LocalTime verspaetung_bis_angeordnet) {
 		this.verspaetung_bis_angeordnet = verspaetung_bis_angeordnet;
 	}
-
+*/
 	
 	public String getAngeordnet_durch() {
 		return angeordnet_durch;
@@ -182,10 +183,7 @@ public class Verspaetungsmeldung extends Fahrerunterlage {
 	public String toString() {
 		return "Verspaetungsmeldung [datum=" + datum + ", dienst_nr=" + dienst_nr + ", schlusszeit_der_dienst_nr="
 				+ schlusszeit_der_dienst_nr + ", verspaetungs_bis=" + verspaetungs_bis + ", verspaetung=" + verspaetung + ", soll_ist_vergleich=" + soll_ist_vergleich
-				+ ", diensttauschkonto=" + diensttauschkonto + ", begruendung=" + begruendung + ", dienstnr_angeordnet="
-				+ dienstnr_angeordnet + ", schlusszeit_der_dienstnr_andeordnet=" + schlusszeit_der_dienstnr_andeordnet
-				+ ", verspaetung_bis_angeordnet=" + verspaetung_bis_angeordnet + ", verspaetung_angeordnet="
-				+ verspaetung_angeordnet + ", angeordnet_durch=" + angeordnet_durch +", Basisdaten"+super.toString()+ "]";
+				+ ", diensttauschkonto=" + diensttauschkonto + ", begruendung=" + begruendung +  ", angeordnet_durch=" + angeordnet_durch +", Basisdaten"+super.toString()+ "]";
 	}
 
 }
