@@ -43,7 +43,7 @@
 		<b:inputText id="fundzettelStrecke" placeholder="#{txt.fuFundzettelStrecke}"
 			value="#{fundzettelBean.fundzettel.strecke}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
-			<f:validateLength minimum="3" maximum="20" />
+			<f:validateLength minimum="3" maximum="40" />
 		</b:inputText>
 		<b:message for="fundzettelStrecke" />
 
@@ -52,7 +52,7 @@
 		<b:inputText id="fundzettelFundort" placeholder="#{txt.fuFundzettelFundort}"
 			value="#{fundzettelBean.fundzettel.fundort}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
-			<f:validateLength minimum="3" maximum="20" />
+			<f:validateLength minimum="3" maximum="40" />
 		</b:inputText>
 		<b:message for="fundzettelFundort" />
 
@@ -124,7 +124,7 @@
 		
 		<h:outputLabel value="#{txt.fuFundzettelWert}" for="fundzettelWert" />
 		<b:inputText id="fundzettelWert"
-			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" >
+			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId]}" >
 			<f:convertNumber pattern="0000" ></f:convertNumber>
 			<f:validator validatorId="notZero" />
 			<f:validator validatorId="paramRange" />

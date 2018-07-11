@@ -43,7 +43,7 @@
 		<b:inputText id="fundzettelStrecke" placeholder="#{txt.fuFundzettelStrecke}"
 			value="#{fundzettelBean.fundzettel.strecke}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
-			<f:validateLength minimum="3" maximum="20" />
+			<f:validateLength minimum="3" maximum="40" />
 		</b:inputText>
 		<b:message for="fundzettelStrecke" />
 
@@ -52,7 +52,7 @@
 		<b:inputText id="fundzettelFundort" placeholder="#{txt.fuFundzettelFundort}"
 			value="#{fundzettelBean.fundzettel.fundort}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
-			<f:validateLength minimum="3" maximum="20" />
+			<f:validateLength minimum="3" maximum="40" />
 		</b:inputText>
 		<b:message for="fundzettelFundort" />
 
@@ -124,7 +124,7 @@
 		
 		<h:outputLabel value="#{txt.fuFundzettelWert}" for="fundzettelWert" />
 		<b:inputText id="fundzettelWert"
-			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId] and fundzettelBean.fundzettel.vonFahrgast}" >
+			value="#{fundzettelBean.fundzettel.wert}" required="#{not empty param[fundButtonEinreichen.clientId]}" >
 			<f:convertNumber pattern="0000" ></f:convertNumber>
 			<f:validator validatorId="notZero" />
 			<f:validator validatorId="paramRange" />
@@ -219,12 +219,12 @@
 		<b:buttonGroup id="group" col-md="6" offset-md="2" col-xs="10"
 			offset-xs="1">
 			<b:commandButton immediate="true" value="#{txt.fuButtonAbbrechen}" action="#{fundzettelBean.abbrechen2}" />
-			<b:commandButton rendered="#{fundzettelBean.fundzettel.status ne 'in_bearbeitung'}" id="fundButtonEinreichen"
+			<b:commandButton rendered="#{fundzettelBean.fundzettel.status ne 'in_bearbeitung' and fundzettelBean.fundzettel.status ne 'bearbeitet'}" id="fundButtonEinreichen"
 				binding="#{fundButtonEinreichen}" value="#{txt.fuButtonEinreichen}"
 				action="#{fundzettelBean.neuEinreichen}" update="@form">
 
 			</b:commandButton>
-			<b:commandButton value="#{txt.fuButtonLoeschen}" rendered="#{fundzettelBean.fundzettel.status ne 'in_bearbeitung'}" action="#{fundzettelBean.loeschen2}" immediate="true" />
+			<b:commandButton value="#{txt.fuButtonLoeschen}" rendered="#{fundzettelBean.fundzettel.status ne 'in_bearbeitung' and fundzettelBean.fundzettel.status ne 'bearbeitet'}" action="#{fundzettelBean.loeschen2}" immediate="true" />
 		</b:buttonGroup>
 	</b:row>
 

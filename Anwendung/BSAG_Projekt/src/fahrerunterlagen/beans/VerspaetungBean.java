@@ -29,7 +29,7 @@ public class VerspaetungBean {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("init");
+		//System.out.println("init");
 		verspmeldung = new Verspaetungsmeldung();
 		fahrerunterlagenService = new FahrerunterlagenService();
 		ladeMeldungen();
@@ -84,7 +84,7 @@ public class VerspaetungBean {
 	
 	private void ladeMeldungen2(){
 		meldungen2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 5);
-		System.out.println("Verspmeld, eingereichte: "+meldungen2.size());
+		//System.out.println("Verspmeld, eingereichte: "+meldungen2.size());
 		Verspaetungsmeldung m = new Verspaetungsmeldung();
 		m.setTitel("Versp");
 		m.setP_nr_fahrer("0003");
@@ -105,10 +105,10 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_form_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	public String einreichen() {
-		System.out.println("Fundzettel, Einreichen: "+verspmeldung.toString());
+		//System.out.println("Fundzettel, Einreichen: "+verspmeldung.toString());
 		verspmeldung.setStatus("nicht_bearbeitet");
 		if (verspmeldung.getAenderung_datum()==null) {
-			System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
+			//System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
 			fahrerunterlagenService.unterlageSpeichern(verspmeldung);
 		}
 		else if (verspmeldung.getAenderung_datum() != null) {
@@ -127,7 +127,7 @@ public class VerspaetungBean {
 	
 	public String speichern() {
 		
-		System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
+		//System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
 		if (verspmeldung.getFahrerunterlage_id()==0) {
 			verspmeldung.setStatus("entwurf");
 			fahrerunterlagenService.unterlageSpeichern(verspmeldung);
@@ -158,6 +158,10 @@ public String abbrechen2() {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		
+	public String loeschen2() {
+	//TODO
+		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
+	}
 		
 	
 	

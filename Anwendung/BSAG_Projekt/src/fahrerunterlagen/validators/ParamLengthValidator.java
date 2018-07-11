@@ -29,9 +29,10 @@ public class ParamLengthValidator implements Validator{
 		Map<String,String> params = 
                 context.getExternalContext().getRequestParameterMap();
 	  String buttonEinreichen = params.get("fundzettelForm:fundButtonEinreichen");
+	  String buttonEinreichen2 = params.get("verspaetungForm:fundButtonEinreichen");
 	  //Wenn Einreichen = null, keine Validierung
-	  if(buttonEinreichen != null) {
-		
+	 // System.out.println("Param Length");
+	  if(buttonEinreichen != null || buttonEinreichen2 != null) {
 		String minS = (String) comp.getAttributes().get("min");
 		String maxS = (String) comp.getAttributes().get("max");
 //		System.out.println("ParamLengthValidator: min="+minS);

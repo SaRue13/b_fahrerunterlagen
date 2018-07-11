@@ -21,9 +21,9 @@ public class PersonalnummerValidator implements Validator{
 	public void validate(FacesContext context, UIComponent component, Object obj) throws ValidatorException {
 		
 		String pnr = (String)obj;
-		System.out.println("Pnr validator für "+pnr);
+		//System.out.println("Pnr validator für "+pnr);
 		if(!pnr.matches(regex)) {
-			System.out.println("no match");
+			//System.out.println("no match");
 			String mb = context.getApplication().getMessageBundle();
 			ResourceBundle rb = ResourceBundle.getBundle(mb);
 			String message = rb.getString("fuNoPNR");

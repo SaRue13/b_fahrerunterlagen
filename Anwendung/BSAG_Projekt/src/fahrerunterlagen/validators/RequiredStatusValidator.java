@@ -23,8 +23,8 @@ public class RequiredStatusValidator implements Validator{
 		//Status aus binding aus selectOneMenu holen
 		SelectOneMenu statusItem = (SelectOneMenu)comp.getAttributes().get("status");
 		String status = (String)statusItem.getValue();
-		System.out.println("Req-validator: status="+status);
-		System.out.println("Req-Val: obj="+obj.getClass().getName());
+		//System.out.println("Req-validator: status="+status);
+		//System.out.println("Req-Val: obj="+obj.getClass().getName());
 		//Testen ob Komponente leer:selctoneMenu, Inputtext, date-time-picker
 		//::inputTExt: obj ist string, selectOne:obj geht zu string, dtp objekt: Sat Jun 02 12:40:00 CEST 2018
 		//System.out.println("objekt: "+obj);

@@ -15,17 +15,17 @@
 	<ui:composition
 		template="../layout_fahrerunterlagen/template_fahrerunterlagen.xhtml">
 		
-		<!-- ui:define name="event">
+		<ui:define name="event">
 			<f:event listener="#{userHandler.checkLoggedIn}" type="preRenderView" />
-		</ui:define> -->
+		</ui:define>
 		
 		<ui:define name="header">	
-			#{txt.FuHeaderErstellenStart}
+			#{txt.FuHeaderEinreichenStart}
 		</ui:define>
 
 		<ui:define name="sidebar_fahrerunterlagen">
 
-			<ui:include src="../sidebar/sidebar_fahrerunterlagen.xhtml" />
+			<ui:include src="../sidebar/sidebar_fahrerunterlagen2.xhtml" />
 		</ui:define>
 
 		<ui:define name="content_fahrerunterlagen">

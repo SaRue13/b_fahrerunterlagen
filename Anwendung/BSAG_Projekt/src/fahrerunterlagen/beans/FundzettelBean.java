@@ -36,12 +36,12 @@ public class FundzettelBean {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("init");
+		//System.out.println("init");
 		fundzettel = new Fundzettel();
 		fahrerunterlagenService = new FahrerunterlagenService();
 		loadZettel();
 		loadZettel2();
-		System.out.println(mainBean.getUserHandler().getPers_nr());
+		//System.out.println(mainBean.getUserHandler().getPers_nr());
 		fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
 	}
 	private void loadZettel() {
@@ -63,7 +63,7 @@ public class FundzettelBean {
 		zettel.add(f1);
 		zettel.add(f2);
 		zettel.add(f3);*/
-		System.out.println("LoadZettel: "+zettel.size());
+		//System.out.println("LoadZettel: "+zettel.size());
 	}
 	private void loadZettel2() {
 	/*	Fundzettel f = new Fundzettel();
@@ -116,26 +116,26 @@ public class FundzettelBean {
 	}
 
 	public void setFundzettel(Fundzettel fundzettel) {
-		System.out.println("fundzettelbean: setSomeValues: "+fundzettel.getLinie());
+		//System.out.println("fundzettelbean: setSomeValues: "+fundzettel.getLinie());
 		this.fundzettel = fundzettel;
 	}
 	
 public String details() {
 		
-		System.out.println("Details: "+fundzettel.toString());
+		//System.out.println("Details: "+fundzettel.toString());
 		return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
 	}
 
 public String details2() {
 	
-	System.out.println("Details der Einreichungen: "+fundzettel.toString());
+	//System.out.println("Details der Einreichungen: "+fundzettel.toString());
 	return "fahrerunterlagen_form_Fundzettel2.xhtml?faces-redirect=true";
 }
 
 public String neu() {
 	fundzettel = new Fundzettel();
 	fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
-	System.out.println("fundzBean, Neu :"+fundzettel.toString());
+	//System.out.println("fundzBean, Neu :"+fundzettel.toString());
 	return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
 }
 	
@@ -165,9 +165,9 @@ public String neu() {
 	
 	public String einreichen() {
 		fundzettel.setStatus("nicht_bearbeitet");
-		System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
+		//System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
 		if (fundzettel.getAenderung_datum()==null) {
-			System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
+			//System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
 			fundzettel.setTyp(1);
 			fahrerunterlagenService.unterlageSpeichern(fundzettel);
 		}
@@ -184,17 +184,17 @@ public String neu() {
 	}
 	
 	public String neuEinreichen() {
-		System.out.println("fundzBean: NeuEinreichen, TODO");
+		//System.out.println("fundzBean: NeuEinreichen, TODO");
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
 	public String abbrechen() {
-		System.out.println("fundzBean Abbrechen");
+		//System.out.println("fundzBean Abbrechen");
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
 	public String abbrechen2() {
-		System.out.println("fundzBean Abbrechen2");
+		//System.out.println("fundzBean Abbrechen2");
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
