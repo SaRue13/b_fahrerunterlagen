@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<!-- <f:view locale="en" /-->
+<b:column>
+	<!-- zwei Teile: Formular und Buttonleiste
+	Inline: wie legt sich das um bei verkleinern des Bildschirms?
+	 -->
+
+	<b:row>
+		<h3>#{txt.FuHeaderVerspaetungEinsehen}</h3>
+
+	</b:row>
+	<b:row>
+		<h3>#{txt.FuHeaderVerspaetungUntertitel}</h3>
+
+	</b:row>
+
+
+
+	<b:panelGrid colSpans="3,5,4">
+
+		<h:outputLabel value="#{txt.fuFormularTitel}" for="verspaetungTitel" />
+		<b:inputText id="verspaetungTitel" placeholder="#{txt.fuFormularTitel}"
+			value="#{verspaetungBean.verspmeldung.titel}" required="#{not empty param[fundButtonSpeichern.clientId] or not empty param[fundButtonEinreichen.clientId]}">
+			<f:validateLength minimum="3" maximum="20" />
+		</b:inputText>
+		<b:message for="verspaetungTitel" />
+
+		<h:outputLabel value="#{txt.fuFundzettelPnr}" for="verspaetungPnr" />
+		<b:inputText id="verspaetungPnr" placeholder="#{txt.fuFundzettelPnr}"
+			value="#{verspaetungBean.verspmeldung.p_nr_fahrer}"
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="PNrValidator" />
+		</b:inputText>
+		<b:message for="verspaetungPnr" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungDatum}"
+			for="verspaetungDatum" />
+		<b:dateTimePicker id="verspaetungDatum" placeholder="#{txt.fuDatumPlatzhalter}"
+			value="#{verspaetungBean.verspmeldung.datum}" side-by-side="true"
+			format="#{txt.fuDatumFormat}" 
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+		</b:dateTimePicker>
+		<b:message for="verspaetungDatum" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungDienstnr}"
+			for="verspaetungDienstnummer" />
+		<b:inputText id="verspaetungDienstnummer" 
+			value="#{verspaetungBean.verspmeldung.dienst_nr}"
+			required="#{not empty param[fundButtonEinreichen.clientId]}" >
+			<f:convertNumber pattern="0000" ></f:convertNumber>
+			<f:validator validatorId="notZero" />
+			<f:validator validatorId="paramLength" />
+				<f:attribute name="min" value="1" />
+				<f:attribute name="max" value="4" />
+		</b:inputText>
+		<b:message for="verspaetungDienstnummer" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungSchlussDienstnr}"
+			for="verspaetungSchlussDnr" />
+		<b:dateTimePicker id="verspaetungSchlussDnr" placeholder="#{txt.fuZeitPlatzhalter}"
+			value="#{verspaetungBean.verspmeldung.schlusszeit_der_dienst_nr}" side-by-side="true"
+			format="#{txt.fuZeitFormat}" 
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+		</b:dateTimePicker>
+		<b:message for="verspaetungSchlussDnr" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungBis}"
+			for="verspaetungBis" />
+		<b:dateTimePicker id="verspaetungBis" placeholder="#{txt.fuZeitPlatzhalter}"
+			value="#{verspaetungBean.verspmeldung.verspaetungs_bis}" side-by-side="true"
+			format="#{txt.fuZeitFormat}" 
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+		</b:dateTimePicker>
+		<b:message for="verspaetungBis" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungVerspaet}"
+			for="verspaetungVerspaet" />
+		<b:inputText id="verspaetungVerspaet" placeholder="#{txt.fuVerspaetungVerspaetPlatzh}"
+			value="#{verspaetungBean.verspmeldung.verspaetung}"
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="paramLength" />
+			<f:attribute name="min" value="1" />
+				<f:attribute name="max" value="10" />
+		</b:inputText>
+		<b:message for="verspaetungVerspaet" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungAngeordentWorden}"
+			for="verspaetungAnordnung" />
+		<b:selectBooleanCheckbox
+			value="#{verspaetungBean.verspmeldung.anordnung}"
+			id="verspaetungAnordnung" >
+			<f:ajax execute="verspaetungAnordnung" event="click" render="nichtAngeordnet angeordnet" />
+		</b:selectBooleanCheckbox>
+		<b:message for="verspaetungAnordnung" />
+		
+		</b:panelGrid>
+
+	<b:panel id="nichtAngeordnet" >
+	<b:panelGrid  colSpans="3,5,4" rendered="#{verspaetungBean.verspmeldung.anordnung eq false}" >
+	<b:column><h4>#{txt.fuVerspKeineAnordnung}</h4></b:column><b:column></b:column><b:column></b:column>
+		<h:outputLabel value="#{txt.fuVerspaetungBegründung}"
+			for="verspaetungBegründung" />
+		<b:inputText id="verspaetungBegründung" placeholder="#{txt.fuVerspaetungBegründung}"
+			value="#{verspaetungBean.verspmeldung.begruendung}"
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="paramLength" />
+			<f:attribute name="min" value="1" />
+				<f:attribute name="max" value="50" />
+		</b:inputText>
+		<b:message for="verspaetungBegründung" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungSollIst}"
+			for="verspaetungSollIst" />
+		<b:selectBooleanCheckbox
+			required="#{verspaetungBean.verspmeldung.diensttauschkonto eq false and verspaetungBean.verspmeldung.soll_ist_vergleich eq false}"
+			update="verspaetungTauschkonto"
+			disabled="#{verspaetungBean.verspmeldung.diensttauschkonto}"
+			value="#{verspaetungBean.verspmeldung.soll_ist_vergleich}"
+			id="verspaetungSollIst"
+			requiredMessage="#{txt.fuVerspaetungEineCheckbox}" >
+		</b:selectBooleanCheckbox>
+		<b:message for="verspaetungSollIst" />
+		
+		<h:outputLabel value="#{txt.fuVerspaetungTauschkonto}"
+			for="verspaetungTauschkonto" />
+		<b:selectBooleanCheckbox
+			required="#{verspaetungBean.verspmeldung.diensttauschkonto eq false and verspaetungBean.verspmeldung.soll_ist_vergleich eq false}"
+			update="verspaetungSollIst"
+			disabled="#{verspaetungBean.verspmeldung.soll_ist_vergleich}"
+			value="#{verspaetungBean.verspmeldung.diensttauschkonto}"
+			id="verspaetungTauschkonto"
+			requiredMessage="#{txt.fuVerspaetungEineCheckbox}" >
+		</b:selectBooleanCheckbox>
+		<b:message for="verspaetungTauschkonto" />
+	
+	</b:panelGrid>
+	</b:panel>	
+		
+	<b:panel id="angeordnet" >
+	
+	<b:panelGrid  colSpans="3,5,4" rendered="#{verspaetungBean.verspmeldung.anordnung}" >	
+<b:column><h4>#{txt.fuVerspAnordnung}</h4></b:column><b:column></b:column><b:column></b:column>
+		
+		<h:outputLabel value="#{txt.fuVerspaetungDurch}"
+			for="verspaetungDurch" />
+		<b:inputText id="verspaetungDurch" placeholder="#{txt.fuVerspaetungDurch}"
+			value="#{verspaetungBean.verspmeldung.angeordnet_durch}"
+			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="paramLength" />
+				<f:attribute name="min" value="3" />
+				<f:attribute name="max" value="30" />
+		</b:inputText>
+		<b:message for="verspaetungDurch" />
+		
+
+	</b:panelGrid>
+	</b:panel>	
+	<b:row>
+		<b:buttonGroup id="group" col-md="6" offset-md="2" col-xs="10"
+			offset-xs="1">
+			<b:commandButton immediate="true" value="#{txt.fuButtonAbbrechen}" action="#{verspaetungBean.abbrechen2}" />
+			<b:commandButton id="fundButtonEinreichen"
+				rendered="#{verspaetungBean.verspmeldung.status ne 'in_bearbeitung'}"
+				binding="#{fundButtonEinreichen}" value="#{txt.fuButtonEinreichen}"
+				action="#{verspaetungBean.einreichen2}" update="@form">
+
+			</b:commandButton>
+			<b:commandButton rendered="#{verspaetungBean.verspmeldung.status ne 'in_bearbeitung'}" immediate="true" id="fundButtonLoeschen" binding="#{fundButtonLoeschen}" value="#{txt.fuButtonLoeschen}" action="#{verspaetungBean.loeschen}" update="@form" />
+		</b:buttonGroup>
+		<!-- button rausgenommen: process="@form" update="@form" : update MUSS rein
+und im Bezug required="" muss ...[.clientId]-->
+	</b:row>
+
+
+</b:column>
+</html>
+

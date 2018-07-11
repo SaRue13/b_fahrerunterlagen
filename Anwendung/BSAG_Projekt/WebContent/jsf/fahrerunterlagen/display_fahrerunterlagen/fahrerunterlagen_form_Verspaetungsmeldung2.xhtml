@@ -20,20 +20,22 @@
 		</ui:define> -->
 		
 		<ui:define name="header">	
-			#{txt.FuHeaderEinreichenStart}
+			#{txt.FuHeaderErstellenStart}
 		</ui:define>
 
 		<ui:define name="sidebar_fahrerunterlagen">
 
-			<ui:include src="../sidebar/sidebar_fahrerunterlagen2.xhtml" />
+			<ui:include src="../sidebar/sidebar_fahrerunterlagen.xhtml" />
 		</ui:define>
 
 		<ui:define name="content_fahrerunterlagen">
-			<b:form>
-			<ui:include src="../content/content_fahrerunterlagen_ansicht_verspaetung2.xhtml" />
+			<b:form id="verspaetungForm">
+			<ui:include src="../content/content_fahrerunterlagen_form_verspaetungsmeldung2.xhtml" />
+			<!--ui:include src="../content/fahrerunterlagen_form_buttons_erstellen.xhtml" /-->
 			</b:form>
 		</ui:define>
 
 	</ui:composition>
 </h:body>
 </html>
+

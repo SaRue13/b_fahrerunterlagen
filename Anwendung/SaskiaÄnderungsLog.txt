@@ -17,3 +17,7 @@ TODO Einreichen Block: wie geht neu einreichen?
 03.07.
 Verspaetungsmeldung:
 -nur für Erstellen/Bearbeiten: Übersichtsansicht und Eingabeformular
+11.07
+Verspaetungsmeldung
+-Einreichungsteil fertig
+-DB Skripte angepasst: Unterlagentyp der Verspaetungsmeldungen und datentyp der Tabelle dazu für Dienst Schluss/Verspätete Zeit

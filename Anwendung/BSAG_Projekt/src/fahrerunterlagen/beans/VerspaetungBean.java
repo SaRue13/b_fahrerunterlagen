@@ -83,7 +83,12 @@ public class VerspaetungBean {
 	}
 	
 	private void ladeMeldungen2(){
-		meldungen2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 5);	
+		meldungen2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 5);
+		System.out.println("Verspmeld, eingereichte: "+meldungen2.size());
+		Verspaetungsmeldung m = new Verspaetungsmeldung();
+		m.setTitel("Versp");
+		m.setP_nr_fahrer("0003");
+		meldungen2.add(m);
 	}
 	
 	public String details() {
@@ -114,6 +119,12 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
+	public String einreichen2() {
+		//TODO
+		
+		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
+	}
+	
 	public String speichern() {
 		
 		System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
@@ -132,6 +143,11 @@ public class VerspaetungBean {
 	public String abbrechen() {
 		
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
+	}
+	
+public String abbrechen2() {
+		
+		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 	
 	

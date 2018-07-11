@@ -48,6 +48,7 @@ public class FundzettelBean {
 		//FahrerunterlagenService methode aufrufen: pnr, 
 		//DAzu ManagedProperty von UserHandler, von dem P-Nr holen
 		zettel = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), false, 1);
+	
 		/*Fundzettel f = new Fundzettel();
 		f.setTitel("Titel");
 		f.setFundort("Sitzgruppe x");
@@ -139,13 +140,19 @@ public String neu() {
 }
 	
 	public String speichern() {
-		System.out.println("Fundzettel, Speichern: "+fundzettel.toString());
+		//System.out.println("Fundzettel, Speichern: "+fundzettel.toString());
 		//Date date = new Date();
 		//fundzettel.setSpeicher_datum(date);
 		//fundzettel.setAenderung_datum(date);
 		fundzettel.setStatus("entwurf");
 		fundzettel.setTyp(1);
+		//System.out.println("Speichern entwurf: "+fundzettel.getFahrerunterlage_id());
+		if(fundzettel.getFahrerunterlage_id() == 0) {
 		fahrerunterlagenService.unterlageSpeichern(fundzettel);
+		}
+		else {
+			fahrerunterlagenService.unterlageBearbeiten(fundzettel);
+		}
 		
 		//fundzettel = new Fundzettel(); //nicht nötig: NEU bzw Wahl setzt fundzettel
 //		clearDatum();
@@ -157,8 +164,8 @@ public String neu() {
 	
 	
 	public String einreichen() {
-		System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
 		fundzettel.setStatus("nicht_bearbeitet");
+		System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
 		if (fundzettel.getAenderung_datum()==null) {
 			System.out.println("FundzettelBean Einreichen Aenderungsdatum ist null");
 			fundzettel.setTyp(1);
@@ -171,6 +178,7 @@ public String neu() {
 		 * clearDatum();
 		clearVonFahrgast();*/
 		//fundzettel = new Fundzettel();
+		loadZettel();
 		loadZettel2();
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
