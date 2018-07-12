@@ -16,12 +16,17 @@ import javax.faces.model.SelectItem;
 import beans.UserHandler;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
+
+/*
+ * Bean für Fahrerunterlagen weit gemeinsam genutze Funktionalitäten.
+ */
+
 @ManagedBean
 @SessionScoped
 public class MainBean {
 
 	private FahrerunterlagenService fahrerunterlagenService;
-	private ArrayList<String> unterlagentypen;
+	private ArrayList<String> unterlagentypen; 
 	private String[] typen;// = {"Urlaubsantrag", "Fundzettel", "Verschmutzungsmeldung", "Wagenlaufkarte", "Ueberstunden"};
 	private SelectItem[] linien;
 	private Date minDate;
@@ -116,6 +121,9 @@ public class MainBean {
 		this.unterlagentypen = unterlagentypen;
 	}
 
+	/*
+	 * Lädt eine Liste von Linien und stellt diese in einem Array von Select Items zur Verfügung.
+	 */
 	private void fillLinien() {
 		//Werte der Linien laden (1, 2, 6E ...)
 		List<String> linienbezeichnung = fahrerunterlagenService.getLinienBezeichnung();

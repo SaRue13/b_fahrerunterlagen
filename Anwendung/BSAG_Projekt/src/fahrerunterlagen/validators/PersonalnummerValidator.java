@@ -10,8 +10,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /*
- * Input: ein String der gegen Regex getestet werden muss,
- * eigene Fehlermeldung schmeissen!
+ * Validator für eine gültige Personalnummereingabe: p oder P gefolgt von vier Ziffern.
  */
 @FacesValidator(value = "PNrValidator")
 public class PersonalnummerValidator implements Validator{

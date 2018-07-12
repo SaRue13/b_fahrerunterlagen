@@ -17,18 +17,19 @@ import fahrerunterlagen.service.FahrerunterlagenService;
 
 
 /*
- * Differenzierte Validierung für speichern/einreichen:
- * Evtl mit Actionlistener attribut des -Buttons abgreifen (speich/einreich)
- * damit einen Status setzen und den in einer required Validierungsmethode verwenden?
+ * Bean die Funktionalitäten des Fundzettels managed.
  */
 
 @ManagedBean
 @SessionScoped
 public class FundzettelBean {
 
+	/*
+	 * Fundzettelobjekt das aus der view referenziert wird.
+	 */
 	private Fundzettel fundzettel;
-	private List<Fahrerunterlage> zettel; //gespeicherte fundzettel
-	private List<Fahrerunterlage> zettel2; //Eingereichte fundzettel
+	private List<Fahrerunterlage> zettel; //Liste gespeicherter fundzettel
+	private List<Fahrerunterlage> zettel2; //Liste Eingereichter fundzettel
 	private FahrerunterlagenService fahrerunterlagenService;
 	private String test = "Test";
 	@ManagedProperty("#{mainBean}")
@@ -44,6 +45,10 @@ public class FundzettelBean {
 		//System.out.println(mainBean.getUserHandler().getPers_nr());
 		fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
 	}
+	
+	/*
+	 * Lädt eine Liste gespeicherter Fundzettel aus der Datenbank
+	 */
 	private void loadZettel() {
 		//FahrerunterlagenService methode aufrufen: pnr, 
 		//DAzu ManagedProperty von UserHandler, von dem P-Nr holen
@@ -65,6 +70,10 @@ public class FundzettelBean {
 		zettel.add(f3);*/
 		//System.out.println("LoadZettel: "+zettel.size());
 	}
+	
+	/*
+	 * Lädt eine Liste eingereichter Fundzettel aus der Datenbank
+	 */
 	private void loadZettel2() {
 	/*	Fundzettel f = new Fundzettel();
 		f.setTitel("Fundzettel 1");
@@ -120,25 +129,40 @@ public class FundzettelBean {
 		this.fundzettel = fundzettel;
 	}
 	
-public String details() {
+	/*
+	 * Leitet auf die Detailansicht (das Formular) für gespeicherte Fundzettel weiter
+	 */
+	public String details() {
 		
 		//System.out.println("Details: "+fundzettel.toString());
 		return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
 	}
 
-public String details2() {
-	
-	//System.out.println("Details der Einreichungen: "+fundzettel.toString());
-	return "fahrerunterlagen_form_Fundzettel2.xhtml?faces-redirect=true";
-}
+	/*
+	 * Leitet auf die Detailansicht (das Formular) für eingereichte Fundzettel weiter
+	 */
+	public String details2() {
+		
+		//System.out.println("Details der Einreichungen: "+fundzettel.toString());
+		return "fahrerunterlagen_form_Fundzettel2.xhtml?faces-redirect=true";
+	}
 
-public String neu() {
-	fundzettel = new Fundzettel();
-	fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
-	//System.out.println("fundzBean, Neu :"+fundzettel.toString());
-	return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
-}
+	/*
+	 * Leitet auf die Detailansicht (das Formular) für gespeicherte Fundzettel weiter
+	 * und setzt dabei ein neues Fundzettelobjekt als Referenz ein
+	 */
+	public String neu() {
+		fundzettel = new Fundzettel();
+		fundzettel.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
+		//System.out.println("fundzBean, Neu :"+fundzettel.toString());
+		return "fahrerunterlagen_form_Fundzettel.xhtml?faces-redirect=true";
+	}
 	
+	/*
+	 * Speichert einen Entwurf, dabei wird der Typ und der Status gesetzt.
+	 * Es wird unterschieden ob ein Entwurf erstmals oder neu gespeichert wird.
+	 * Im Anschluss wird die Liste gespeicherter Fundzettel aktualisiert.
+	 */
 	public String speichern() {
 		//System.out.println("Fundzettel, Speichern: "+fundzettel.toString());
 		//Date date = new Date();
@@ -161,8 +185,11 @@ public String neu() {
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
-	
-	
+	/*
+	 * Reicht einen Entwurf ein, dabei wird der Typ und der Status gesetzt.
+	 * Es wird unterschieden ob ein Entwurf erstmals oder neu eingereicht wird.
+	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 */	
 	public String einreichen() {
 		fundzettel.setStatus("nicht_bearbeitet");
 		//System.out.println("Fundzettel, Einreichen: "+fundzettel.toString());
@@ -183,29 +210,43 @@ public String neu() {
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Reicht einen Entwurf neu ein,////////////////???????????????????.
+	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 */	
 	public String neuEinreichen() {
 		//System.out.println("fundzBean: NeuEinreichen, TODO");
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Abbruch der Detailansicht, führt zurück auf Übersichtsansicht gespeicherter Fundzettel.
+	 */
 	public String abbrechen() {
 		//System.out.println("fundzBean Abbrechen");
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Abbruch der Detailansicht, führt zurück auf Übersichtsansicht eingereichter Fundzettel.
+	 */
 	public String abbrechen2() {
 		//System.out.println("fundzBean Abbrechen2");
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
-
-	
+	/*
+	 * Löscht einen Entwurf und aktualisiert die Liste gespeicherter Fundzettel.
+	 */
 	public String loeschen() {
 		fahrerunterlagenService.unterlageLoeschen(fundzettel);
 		loadZettel();
 		return "fahrerunterlagen_ansicht_Fundzettel.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Löscht eine Fahrerunterlage und aktualisiert die Liste eingereichter Fundzettel.
+	 */
 	public String loeschen2() {
 		fahrerunterlagenService.unterlageLoeschen(fundzettel);
 		loadZettel2();

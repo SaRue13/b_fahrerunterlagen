@@ -10,6 +10,11 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/*
+ * Validator der beim Einreichen einer Fahrerunterlage in Zahleingabefeldern das bestehen bleiben
+ * einer '0' verhindert, also eine Eingabe erzwingt.
+ */
+
 @FacesValidator(value = "notZero")
 public class NotZeroValidator implements Validator{
 

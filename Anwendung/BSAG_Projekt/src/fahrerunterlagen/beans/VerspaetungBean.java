@@ -12,6 +12,10 @@ import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Verspaetungsmeldung;
 import fahrerunterlagen.service.FahrerunterlagenService;
 
+/*
+ * Bean die Funktionalitäten der Verspaetungsmeldung verwaltet.
+ */
+
 @ManagedBean
 @SessionScoped
 public class VerspaetungBean {
@@ -19,7 +23,7 @@ public class VerspaetungBean {
 	
 	//Liste 2 geladener VerspMeld (eingereichte)
 	
-	private Verspaetungsmeldung verspmeldung;
+	private Verspaetungsmeldung verspmeldung; //Referenziertes Verspaetungsmeldungsobjekt
 	private List<Fahrerunterlage> meldungen; //gespeicherte Verspaetungsmeldungen
 	private List<Fahrerunterlage> meldungen2; //Eingereichte Verspaetungsmeldungen
 	private FahrerunterlagenService fahrerunterlagenService;
@@ -77,33 +81,50 @@ public class VerspaetungBean {
 		this.mainBean = mainBean;
 	}
 
-
+	/*
+	 * Lädt eine Liste gespeicherter Verspätungsmeldungen.
+	 */
 	private void ladeMeldungen(){
 		meldungen = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), false, 5);
 	}
 	
+	/*
+	 * Lädt eine Liste eingereichter Verspätungsmeldungen.
+	 */
 	private void ladeMeldungen2(){
 		meldungen2 = fahrerunterlagenService.findeFahrerUnterlagen(mainBean.getUserHandler().getPers_nr(), true, 5);
 		//System.out.println("Verspmeld, eingereichte: "+meldungen2.size());
-		Verspaetungsmeldung m = new Verspaetungsmeldung();
-		m.setTitel("Versp");
-		m.setP_nr_fahrer("0003");
-		meldungen2.add(m);
 	}
 	
+	/*
+	 * Leitet auf die Detailansicht (das Formular) für Entwürfe weiter.
+	 */
 	public String details() {
 		return "fahrerunterlagen_form_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Leitet auf die Detailansicht (das Formular) für Einreichungen weiter.
+	 */
 	public String details2() {
 		return "fahrerunterlagen_form_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 
+	/*
+	 *  Leitet auf die Detailansicht (das Formular) für Entwürfe weiter und setzt
+	 *  dabei ein neues Verspaetungsmeldungsobjekt als Referenz.
+	 */
 	public String neu() {
 		verspmeldung = new Verspaetungsmeldung();
 		verspmeldung.setP_nr_fahrer(mainBean.getUserHandler().getPers_nr());
 		return "fahrerunterlagen_form_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
+	
+	/*
+	 * Reicht einen Entwurf ein, dabei wird der Typ und der Status gesetzt.
+	 * Es wird unterschieden ob ein Entwurf erstmals oder neu eingereicht wird.
+	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 */	
 	public String einreichen() {
 		//System.out.println("Fundzettel, Einreichen: "+verspmeldung.toString());
 		verspmeldung.setStatus("nicht_bearbeitet");
@@ -119,12 +140,21 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Reicht einen Entwurf neu ein,////////////////???????????????????.
+	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 */	
 	public String einreichen2() {
 		//TODO
 		
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 	
+	/*
+	 * Speichert einen Entwurf, dabei wird der Typ und der Status gesetzt.
+	 * Es wird unterschieden ob ein Entwurf erstmals oder neu gespeichert wird.
+	 * Im Anschluss wird die Liste gespeicherter Fundzettel aktualisiert.
+	 */
 	public String speichern() {
 		
 		//System.out.println("Fundzettel, Speichern: "+verspmeldung.toString());
@@ -140,17 +170,25 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		
+	/*
+	 * Abbruch der Detailansicht, führt zurück auf Übersichtsansicht gespeicherter Verspätungsmeldungen.
+	 */
 	public String abbrechen() {
 		
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
-public String abbrechen2() {
+	/*
+	 * Abbruch der Detailansicht, führt zurück auf Übersichtsansicht eingereichter Verspätungsmeldungen.
+	 */
+	public String abbrechen2() {
 		
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 	
-	
+	/*
+	 * Löscht einen Entwurf und aktualisiert die Liste gespeicherter Verspätungsmeldungen.
+	 */
 	public String loeschen() {
 		fahrerunterlagenService.unterlageLoeschen(verspmeldung);
 		ladeMeldungen();
@@ -158,6 +196,9 @@ public String abbrechen2() {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		
+	/*
+	 * Löscht eine Fahrerunterlage und aktualisiert die Liste eingereichter Verspätungsmeldungen.
+	 */
 	public String loeschen2() {
 	//TODO
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";

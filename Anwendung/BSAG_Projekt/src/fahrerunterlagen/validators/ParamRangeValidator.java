@@ -14,8 +14,11 @@ import javax.faces.validator.ValidatorException;
 
 
 /*
- * custom lengthValidator: Bekommt als Parameter mit was min und max ist und
- * reagiert nicht, wenn Speichern gedrückt wird
+ * Validator der Zahleingaben auf Übereinstimmung mit einem festgelegten Wertebereich hin überprüft.
+ * Funktioniert für Eingaben des Typs long (JSF: Verwendung des f:convertNumber tags,
+ * braucht die zusätzlichen Parameter 'min' und 'max', die dem Validator als f:attribute 
+ * übergeben werden müssen.
+ * Validator reagiert, wenn die Eingabe nicht '0' ist.
  */
 @FacesValidator(value = "paramRange")
 public class ParamRangeValidator implements Validator{
@@ -30,12 +33,14 @@ public class ParamRangeValidator implements Validator{
                 context.getExternalContext().getRequestParameterMap();
 	  String buttonEinreichen = params.get("fundzettelForm:fundButtonEinreichen");
 	  //Wenn Einreichen = null, keine Validierung
-	  if(buttonEinreichen != null) {
-		
+	  //if(buttonEinreichen != null) {
+	  long input = (long) obj;
+	  if(input != 0) {
+		//System.out.println("ParamRange input="+input);
 		String minS = (String) comp.getAttributes().get("min");
 		String maxS = (String) comp.getAttributes().get("max");
 		//int input = (int) obj;
-		long input = (long) obj;
+		
 //		int min = Integer.parseInt(minS);
 //		int max = Integer.parseInt(maxS);
 		long min = Long.parseLong(minS);
@@ -58,7 +63,7 @@ public class ParamRangeValidator implements Validator{
 		 */
 		
 		if(input < min || input > max) {
-			//System.out.println("praramRange: Wert passt nicht: "+input);
+			//System.out.println("praramRange: Wert nicht "+min+" und "+ max);
 			/*String message = rb.getString("fuMINValidation");
 			String messageDetail = rb.getString("fuMINValidation_detail");
 			context.addMessage(comp.getClientId(context), new FacesMessage(FacesMessage.SEVERITY_ERROR, message, messageDetail));*/

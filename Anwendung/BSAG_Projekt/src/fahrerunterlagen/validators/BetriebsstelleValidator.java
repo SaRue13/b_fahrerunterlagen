@@ -10,8 +10,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /*
- * Input: ein String der gegen Regex getestet werden muss,
- * eigene Fehlermeldung schmeissen!
+ * Validator für eine gültige Betriebstelleneingabe: b oder B gefolgt von zwei Ziffern
  */
 @FacesValidator(value = "BValidator")
 public class BetriebsstelleValidator implements Validator{

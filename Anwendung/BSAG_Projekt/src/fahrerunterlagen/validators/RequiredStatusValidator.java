@@ -11,6 +11,7 @@ import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 
 
 /*
+ * WIRD NICHT MEHR VERWENDET
  * Status von Button abgreifen und anhand dessen validieren oder nicht
  * Fkt: Wenn speichern, dann nicht required, wenn einreichen, dann schon
  */

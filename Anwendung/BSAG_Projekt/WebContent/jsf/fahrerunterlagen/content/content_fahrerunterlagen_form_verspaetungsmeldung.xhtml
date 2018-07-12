@@ -86,6 +86,9 @@
 		<b:inputText id="verspaetungVerspaet" placeholder="#{txt.fuVerspaetungVerspaetPlatzh}"
 			value="#{verspaetungBean.verspmeldung.verspaetung}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="stringParamLength" />
+				<f:attribute name="min" value="2" />
+				<f:attribute name="max" value="20" />
 		</b:inputText>
 		<b:message for="verspaetungVerspaet" />
 		
@@ -108,6 +111,9 @@
 		<b:inputText id="verspaetungBegründung" placeholder="#{txt.fuVerspaetungBegründung}"
 			value="#{verspaetungBean.verspmeldung.begruendung}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="stringParamLength" />
+				<f:attribute name="min" value="2" />
+				<f:attribute name="max" value="50" />
 		</b:inputText>
 		<b:message for="verspaetungBegründung" />
 		
@@ -148,6 +154,9 @@
 		<b:inputText id="verspaetungDurch" placeholder="#{txt.fuVerspaetungDurch}"
 			value="#{verspaetungBean.verspmeldung.angeordnet_durch}"
 			required="#{not empty param[fundButtonEinreichen.clientId]}">
+			<f:validator validatorId="stringParamLength" />
+				<f:attribute name="min" value="2" />
+				<f:attribute name="max" value="50" />
 		</b:inputText>
 		<b:message for="verspaetungDurch" />
 		

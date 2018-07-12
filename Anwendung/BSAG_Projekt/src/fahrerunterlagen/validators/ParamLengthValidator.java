@@ -14,8 +14,11 @@ import javax.faces.validator.ValidatorException;
 
 
 /*
- * custom lengthValidator: Bekommt als Parameter mit was min und max ist und
- * reagiert nicht, wenn Speichern gedrückt wird
+ * Validator der Zahleingaben auf korrekte Anzahl der Ziffern überprüft.
+ * Funktioniert für Eingaben des Typs long (JSF: Verwendung des f:convertNumber tags,
+ * braucht die zusätzlichen Parameter 'min' und 'max', die dem Validator als f:attribute 
+ * übergeben werden müssen.
+ * Validator reagiert, wenn die Eingabe nicht '0' ist.
  */
 @FacesValidator(value = "paramLength")
 public class ParamLengthValidator implements Validator{
@@ -32,13 +35,15 @@ public class ParamLengthValidator implements Validator{
 	  String buttonEinreichen2 = params.get("verspaetungForm:fundButtonEinreichen");
 	  //Wenn Einreichen = null, keine Validierung
 	 // System.out.println("Param Length");
-	  if(buttonEinreichen != null || buttonEinreichen2 != null) {
+	 // if(buttonEinreichen != null || buttonEinreichen2 != null) {
+	  long input = (long) obj;
+	  if(input != 0) {
 		String minS = (String) comp.getAttributes().get("min");
 		String maxS = (String) comp.getAttributes().get("max");
 //		System.out.println("ParamLengthValidator: min="+minS);
 //		System.out.println("ParamLengthValidator");
 		//int input = (int) obj;
-		long input = (long) obj;
+		
 		//ich will anzahl der ziffern
 		long size = (long) Math.log10(input) + 1;
 //		int min = Integer.parseInt(minS);
