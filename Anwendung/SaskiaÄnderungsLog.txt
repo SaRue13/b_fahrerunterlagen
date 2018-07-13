@@ -21,3 +21,6 @@ Verspaetungsmeldung:
 Verspaetungsmeldung
 -Einreichungsteil fertig
 -DB Skripte angepasst: Unterlagentyp der Verspaetungsmeldungen und datentyp der Tabelle dazu für Dienst Schluss/Verspätete Zeit
+12.07.18
+-Kommentieren: Beans, VAlidatoren
+-StringParamLengthValidator
