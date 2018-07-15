@@ -187,8 +187,8 @@ public class FundzettelBean {
 	
 	/*
 	 * Reicht einen Entwurf ein, dabei wird der Typ und der Status gesetzt.
-	 * Es wird unterschieden ob ein Entwurf erstmals oder neu eingereicht wird.
-	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 * Es wird unterschieden ob ein neuer Entwurf oder schon mal gespeicherter eingereicht wird.
+	 * Im Anschluss werden die Listen der Entwürfe und eingreichten Fundzettel aktualisiert.
 	 */	
 	public String einreichen() {
 		fundzettel.setStatus("nicht_bearbeitet");
@@ -211,11 +211,12 @@ public class FundzettelBean {
 	}
 	
 	/*
-	 * Reicht einen Entwurf neu ein,////////////////???????????????????.
+	 * Reicht eine Einreichung neu ein.
 	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
 	 */	
 	public String neuEinreichen() {
 		//System.out.println("fundzBean: NeuEinreichen, TODO");
+		fahrerunterlagenService.unterlageBearbeiten(fundzettel);
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	

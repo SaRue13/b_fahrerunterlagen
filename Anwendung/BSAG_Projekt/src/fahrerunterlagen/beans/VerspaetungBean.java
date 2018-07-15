@@ -121,9 +121,9 @@ public class VerspaetungBean {
 	}
 	
 	/*
-	 * Reicht einen Entwurf ein, dabei wird der Typ und der Status gesetzt.
-	 * Es wird unterschieden ob ein Entwurf erstmals oder neu eingereicht wird.
-	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
+	 * Reicht einen Entwurf ein, dabei wird der Status gesetzt.
+	 * Es wird unterschieden ob es ein gespeicherter Entwurf oder ein neuer eingereicht wird.
+	 * Im Anschluss wird die Listen gespeicherten Entwürfe und eingreichten Fundzettel aktualisiert.
 	 */	
 	public String einreichen() {
 		//System.out.println("Fundzettel, Einreichen: "+verspmeldung.toString());
@@ -141,12 +141,12 @@ public class VerspaetungBean {
 	}
 	
 	/*
-	 * Reicht einen Entwurf neu ein,////////////////???????????????????.
+	 * Reicht eine Einreichung neu ein.
 	 * Im Anschluss wird die Liste eingreichten Fundzettel aktualisiert.
 	 */	
 	public String einreichen2() {
-		//TODO
-		
+		fahrerunterlagenService.unterlageBearbeiten(verspmeldung);
+		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 	
@@ -178,6 +178,8 @@ public class VerspaetungBean {
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 	
+	
+	
 	/*
 	 * Abbruch der Detailansicht, führt zurück auf Übersichtsansicht eingereichter Verspätungsmeldungen.
 	 */
@@ -192,7 +194,6 @@ public class VerspaetungBean {
 	public String loeschen() {
 		fahrerunterlagenService.unterlageLoeschen(verspmeldung);
 		ladeMeldungen();
-		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung.xhtml?faces-redirect=true";
 	}
 		
@@ -200,7 +201,8 @@ public class VerspaetungBean {
 	 * Löscht eine Fahrerunterlage und aktualisiert die Liste eingereichter Verspätungsmeldungen.
 	 */
 	public String loeschen2() {
-	//TODO
+		fahrerunterlagenService.unterlageLoeschen(verspmeldung);
+		ladeMeldungen2();
 		return "fahrerunterlagen_ansicht_Verspaetungsmeldung2.xhtml?faces-redirect=true";
 	}
 		

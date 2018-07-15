@@ -18,43 +18,75 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 
-
+/**
+ * @author Mariia Muravytska
+ * Klasse die FahrerunterlagenDAO implementiert
+ */
 public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterlage, Integer>{
 	
 	private Session currentSession;
 	private Transaction currentTransaction;
 	private static FahrerunterlagenImplDAO instance;
 	
+	/**
+	 * Konstruktor
+	 */
 	private FahrerunterlagenImplDAO() {
 		
 	} 
 
+	/**
+	 * Singelton
+	 * Diese Methode checkt, ob Klassenobjekt schon vorhanden ist
+	 * wenn ja gibt dies zurueck
+	 * wenn nein legt dies an
+	 * @return Klassenobjekt
+	 */
 	public static synchronized FahrerunterlagenImplDAO getInstance() {
 		if (instance == null) {
 			instance = new FahrerunterlagenImplDAO();
 		}
 		return instance;
 	}
+	
+	/**
+	 * Methode die DB-Verbindung-Session oeffnet
+	 * @return Session
+	 */
 	public Session openCurrentSession() {
 		currentSession = getSessionFactory().openSession();
 		return currentSession;
 	}
-		
+	
+	/**
+	 * Methode die DB-Verbindung-Session mit Transaktion oeffnet
+	 * @return Session
+	 */
 	public Session openCurrentSessionwithTransaction() {
 		currentSession = getSessionFactory().openSession();
 		currentTransaction = currentSession.beginTransaction();
 		return currentSession;
 	}	 
 		
+	/**
+	 * Methode die DB-Verbindung-Session schliesst
+	 */
 	public void closeCurrentSession() {
 		currentSession.close();
 	}
 	
+	/**
+	 * Methode die DB-Verbindung-Session mit Transaktion schliesst
+	 */
 	public void closeCurrentSessionwithTransaction() {
 		currentTransaction.commit();
 		currentSession.close();
 	}
 		
+	/**
+	 * Methode die Session Factory aufbaut und configuriert
+	 * @return SessionFactory
+	 */
 	private static SessionFactory getSessionFactory() {
 		Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
 		//
@@ -66,7 +98,6 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verschmutzungsmeldung.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Verspaetungsmeldung.class);
 		configuration.addAnnotatedClass(fahrerunterlagen.daten.Linie.class);
-		//configuration.addClass(fahrerunterlagen.daten.Fahrerunterlage.class);
 		//
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
 													.applySettings(configuration.getProperties());
@@ -89,7 +120,11 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 	public void setCurrentTransaction(Transaction currentTransaction) {
 		 this.currentTransaction = currentTransaction;   	
 	}	    	        
-		    		    	    	
+		    		    	
+	/**
+	 * Methode die alle in BD vorhandene Unterlagentypen laedt
+	 * @return Unterlagentypen vom Typ List
+	 */
 	@Override
 	public List<Unterlagentyp> getUnterlagenTypen() {
 		@SuppressWarnings("unchecked")
@@ -97,17 +132,29 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		return unterlagentypen;
 	}
 	
+	/**
+	 * Methode die alle in BD vorhandene Linien laedt
+	 * @return Linien vom Typ List
+	 */
 	public List<Linie> getLinien() {
 		@SuppressWarnings("unchecked")
 		List<Linie> linien = getCurrentSession().createQuery("from Linie").list();
 		return linien;	
 	}
 
+	/**
+	 * Methode die Insert in DB macht
+	 * @param Objekt vom Fahrerunterlagen, das zu speichern ist
+	 */
 	@Override
 	public void unterlageSpeichern(Fahrerunterlage entity) {
 		getCurrentSession().save(entity);		
 	}
 
+	/**
+	 * Methode die Udate an einem Fahrerunterlageeintrag in DB macht
+	 * @param Objekt was geaendert werden soll
+	 */
 	@Override
 	public void unterlageBearbeiten(Fahrerunterlage entity) {
 		getCurrentSession().update(entity);
@@ -116,10 +163,10 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 	/**
 	 * Liste von Fahrerunterlagen holen, die bestimmtem Fahrer gehoeren und Entwuerfe 
 	 * oder Einreichungen sind, auch von einem bestimmten Unterlagentyp
-	 * @param fahrer: p Nummer des Fahrers
+	 * @param fahrer: p Nummer des Fahrers (String)
 	 * @param eingereicht false: nach Entwuerfe suchen, true: nach Einreichungen
-	 * @param typ: typ_id
-	 * @return Fahrerunterlagen
+	 * @param typ: typ_id (int)
+	 * @return Fahrerunterlagen (List)
 	 */
 	@Override
 	public List<Fahrerunterlage> findeFahrerUnterlagen(String fahrer, boolean eingereicht, int typ) {
@@ -134,7 +181,7 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 			andExp = Restrictions.and(p_nr, status);
 		}
 		else {
-			// Einreichungen mit unterschiedlichen Statusen
+			// Einreichungen mit unterschiedlichen Status
 			Criterion bearbeitet = Restrictions.eq("status", "bearbeitet");
 			Criterion nicht_bearbeitet = Restrictions.eq("status", "nicht_bearbeitet");
 			Criterion in_bearbeitung = Restrictions.eq("status", "in_bearbeitung");
@@ -151,21 +198,31 @@ public class FahrerunterlagenImplDAO implements FahrerunterlagenDAO<Fahrerunterl
 		return unterlagen;
 	}
 
+	/**
+	 * Methode die Delete in DB ausfuehrt
+	 * @param das Objek zuloeschender Fahrerunterlage
+	 */
 	@Override
 	public void unterlageLoeschen(Fahrerunterlage entity) {
 		getCurrentSession().delete(entity);		
 	}
 
+	/**
+	 * Methode zum Speichern Urlaubstade
+	 * diese Funktion ist noch nicht umgesetzt, da Urlaubsantrag nicht umgesetz wird
+	 */
 	@Override
 	public void urlaubstagSpeichern(Urlaubstag urlaubstag) {
 		getCurrentSession().save(urlaubstag);	
 	}
 
+	/**
+	 * Methode holt alle Urlaubstage die zu einem Urlaubsantrag gehoeren
+	 * diese Funktion ist noch nicht umgesetzt, da Urlaubsantrag nicht umgesetz wird
+	 */
 	@Override
 	public List<Urlaubstag> getUrlaubstage(int urlaubsantrag_id) {
 		Criterion id = Restrictions.eq("status", "bearbeitet");
 		return null;
-	}
-	
-
+	}	
 }

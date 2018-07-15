@@ -16,3 +16,11 @@ SQL Skript zum Erstellen von Test-Fundzetteln
 - DB Skript angepasst
 - daten/Verspaetungsmeldung.java
 - beans/VerspaetungBean: Speichern, Einreichen, Löschen, Laden. 
+
+15.07.18
+
+- Test-Ordner und Test-Klasse
+
+- DAO und Service Klassen Kommentiert
+
+- Fundzettel und Verspätungsmeldung Beans

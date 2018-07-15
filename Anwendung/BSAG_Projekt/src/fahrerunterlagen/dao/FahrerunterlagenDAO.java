@@ -2,6 +2,8 @@ package fahrerunterlagen.dao;
 
 import java.io.Serializable;
 import java.util.List;
+
+import fahrerunterlagen.daten.Fahrerunterlage;
 import fahrerunterlagen.daten.Unterlagentyp;
 import fahrerunterlagen.daten.Urlaubstag;
 
