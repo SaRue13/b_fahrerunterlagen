@@ -217,6 +217,7 @@ public class FundzettelBean {
 	public String neuEinreichen() {
 		//System.out.println("fundzBean: NeuEinreichen, TODO");
 		fahrerunterlagenService.unterlageBearbeiten(fundzettel);
+		loadZettel2();
 		return "fahrerunterlagen_ansicht_Fundzettel2.xhtml?faces-redirect=true";
 	}
 	
